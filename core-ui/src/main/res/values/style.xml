@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.Tmdb.AppBar" parent="@style/Widget.MaterialComponents.AppBarLayout.Surface"></style>
+
+    <style name="Widget.Tmdb.TextButton" parent="@style/Widget.MaterialComponents.Button.TextButton"></style>
+
+    <style name="Widget.Tmdb.NavigationView" parent="@style/Widget.MaterialComponents.BottomNavigationView"></style>
+
+    <style name="Widget.Tmdb.Snackbar" parent="@style/Widget.MaterialComponents.Snackbar"></style>
+
+    <!--    <style-->
+    <!--        name="Widget.Tmdb.SnackbarButton"-->
+    <!--        parent="@style/Widget.MaterialComponents.Snackbar.">-->
+    <!--    </style>-->
+
+</resources>

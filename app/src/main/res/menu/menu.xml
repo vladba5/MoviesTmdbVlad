@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/movies_graph"
+        android:enabled="true"
+        android:title="Movies"
+        android:icon="@drawable/ic_movie_filter"/>
+
+    <item
+        android:id="@+id/tv_show_graph"
+        android:title="tv shows"
+        android:icon="@drawable/ic_tvshows"/>
+
+    <item
+        android:id="@+id/people_graph"
+        android:title="people"
+        android:icon="@drawable/ic_people"/>
+
+</menu>
