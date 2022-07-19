@@ -14,8 +14,14 @@ class ObserveRecommendedMovies @Inject constructor(
 
     override fun createObservable(params: Params): Flow<List<Movie>> {
         return moviesRepository.observeRecommendedMovies()
-            .map { list ->  list.flatMap { it.value } }
+            .map { list ->
+                list.flatMap {
+                    it.value
+                }
+            }
     }
+
+
 
     data class Params(val movieId: Int)
 }

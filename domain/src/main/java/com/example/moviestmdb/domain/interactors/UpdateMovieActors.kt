@@ -1,7 +1,6 @@
 package com.example.moviestmdb.domain.interactors
 
 import com.example.moviestmdb.MovieCredit
-import com.example.moviestmdb.MovieResponse
 import com.example.moviestmdb.core.data.movies.MoviesRepository
 import com.example.moviestmdb.core.result.Result
 import com.example.moviestmdb.core.util.AppCoroutineDispatchers
@@ -18,17 +17,17 @@ class UpdateMovieActors @Inject constructor(
 ) : FlowInteractor<Params, MovieCredit>(dispatchers.io) {
 
     override suspend fun doWork(params: Params): Flow<Result<MovieCredit>> {
-        val movId = when {
+        val movieId = when {
             params.movieId >= 1 -> params.movieId
             else -> 1
         }
 
-        return moviesRepository.getActors(movId)
+        return moviesRepository.getActors(movieId)
             .onEach { result ->
                 when (result) {
                     is Result.Error -> Timber.e(result.exception)
                     is Result.Success -> moviesRepository.saveMovieActors(
-                        movieId = movId,
+                        movieId = movieId,
                         actors = result.data.cast
                     )
                 }

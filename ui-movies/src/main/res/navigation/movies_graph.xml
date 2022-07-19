@@ -1,42 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/movies_graph"
     app:startDestination="@id/moviesLobbyFragment">
 
     <fragment
         android:id="@+id/moviesLobbyFragment"
         android:name="com.example.moviestmdb.ui_movies.fragments.lobby_fragment.MoviesLobbyFragment"
-        android:label="MoviesLobbyFragment">
-        <action
-            android:id="@+id/navigateToPopularMoviesFragment"
-            app:destination="@id/popularMoviesFragment" />
-        <action
-            android:id="@+id/navigateToUpcomingMoviesFragment"
-            app:destination="@id/upcomingMoviesFragment" />
-        <action
-            android:id="@+id/navigateToTopRatedMoviesFragment"
-            app:destination="@id/topRatedMoviesFragment" />
-        <action
-            android:id="@+id/navigateToNowPlayingMoviesFragment"
-            app:destination="@id/nowPlayingMoviesFragment" />
+        android:label="MoviesLobbyFragment"
+        tools:layout="@layout/fragment_lobby">
+<!--        <action-->
+<!--            android:id="@+id/navigateToPopularMoviesFragment"-->
+<!--            app:destination="@id/popularMoviesFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/navigateToUpcomingMoviesFragment"-->
+<!--            app:destination="@id/upcomingMoviesFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/navigateToTopRatedMoviesFragment"-->
+<!--            app:destination="@id/topRatedMoviesFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/navigateToNowPlayingMoviesFragment"-->
+<!--            app:destination="@id/nowPlayingMoviesFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/navigateToMovieDetailsFragment"-->
+<!--            app:destination="@id/movieDetailsFragment" />-->
     </fragment>
 
     <fragment
         android:id="@+id/popularMoviesFragment"
         android:name="com.example.moviestmdb.ui_movies.popular.PopularMoviesFragment"
-        android:label="PopularMoviesFragment" />
+        android:label="PopularMoviesFragment"
+        tools:layout="@layout/fragment_popular_movies"/>
     <fragment
         android:id="@+id/nowPlayingMoviesFragment"
         android:name="com.example.moviestmdb.ui_movies.fragments.now_playing_movies_fragment.NowPlayingMoviesFragment"
-        android:label="NowPlayingMoviesFragment" />
+        android:label="NowPlayingMoviesFragment"
+        tools:layout="@layout/fragment_now_playing_movies"/>
     <fragment
         android:id="@+id/topRatedMoviesFragment"
         android:name="com.example.moviestmdb.ui_movies.fragments.top_rated_movies_fragment.TopRatedMoviesFragment"
-        android:label="TopRatedMoviesFragment" />
+        android:label="TopRatedMoviesFragment"
+        tools:layout="@layout/fragment_top_rated_movies"/>
     <fragment
         android:id="@+id/upcomingMoviesFragment"
         android:name="com.example.moviestmdb.ui_movies.fragments.upcoming_movies_fragment.UpcomingMoviesFragment"
-        android:label="UpcomingMoviesFragment" />
+        android:label="UpcomingMoviesFragment"
+        tools:layout="@layout/fragment_upcoming_movies"/>
+    <fragment
+        android:id="@+id/movieDetailsFragment"
+        android:name="com.example.moviestmdb.ui_movies.fragments.movie_details_fragment.MovieDetailsFragment"
+        android:label="MovieDetailsFragment"
+        tools:layout="@layout/fragment_movie_details"/>
 
 </navigation>

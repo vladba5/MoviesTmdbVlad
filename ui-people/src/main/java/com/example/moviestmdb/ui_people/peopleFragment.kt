@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.example.moviestmdb.ui_people.databinding.PeopleFragmentBinding
 
 class peopleFragment : Fragment() {
@@ -25,7 +25,8 @@ class peopleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        NavigationUI.setupWithNavController(binding.toolbar, findNavController())
+        setupWithNavController(binding.toolbar, findNavController())
+        binding.toolbar.title = "people"
 
     }
 }

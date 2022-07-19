@@ -30,14 +30,21 @@ class MovieDetailsViewModel @Inject constructor(
     private val actorsLoadingState = ObservableLoadingCounter()
     private val uiMessageManager = UiMessageManager()
 
-    private val movieId : Int = 555 //will be sent via bundle
+    private val movieId : Int = 0 //will be sent via bundle
 
 
     init {
         observeRecommendedMovies(ObserveRecommendedMovies.Params(movieId))
         observeMovieActors(ObserveMovieActors.Params(movieId))
 
-        refresh()
+        refresh(movieId)
+    }
+
+    fun updateData(movieId : Int){
+//        observeRecommendedMovies(ObserveRecommendedMovies.Params(movieId))
+//        observeMovieActors(ObserveMovieActors.Params(movieId))
+
+        refresh(movieId)
     }
 
     val detailState: StateFlow<DetailsViewState> = combine(
@@ -61,7 +68,7 @@ class MovieDetailsViewModel @Inject constructor(
         DetailsViewState.Empty
     )
 
-    fun refresh() {
+    fun refresh(movieId : Int) {
         viewModelScope.launch(dispatchers.io) {
             updateMovieRecommended(UpdateMovieRecommended.Params(movieId))
                 .collectStatus(
@@ -76,6 +83,12 @@ class MovieDetailsViewModel @Inject constructor(
                     actorsLoadingState,
                     uiMessageManager
                 )
+        }
+    }
+
+    fun clearMessage(id: Long) {
+        viewModelScope.launch {
+            uiMessageManager.clearMessage(id)
         }
     }
 }

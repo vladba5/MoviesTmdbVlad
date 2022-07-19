@@ -70,11 +70,11 @@ class MoviesRepository @Inject constructor(
         }
 
     fun saveMovieRecommended(movieId: Int, movies: List<Movie>) {
-        local.movieStore.insertRecommended(movieId, movies)
+        local.detailStore.insertRecommended(movieId, movies)
 
     }
 
-    fun observeRecommendedMovies() = local.movieStore.observeRecommendedMovies()
+    fun observeRecommendedMovies() = local.detailStore.observeRecommendedMovies()
     //endregion
 
     //region Actors
@@ -84,27 +84,17 @@ class MoviesRepository @Inject constructor(
         }
 
     fun saveMovieActors(movieId: Int, actors: List<Cast>) {
-        local.movieStore.insertActors(movieId, actors)
+        local.detailStore.insertActors(movieId, actors)
     }
 
-    fun observeActors() = local.movieStore.observeAssociatedActors()
+    fun observeActors() = local.detailStore.observeAssociatedActors()
     //endregion
 
+    //fun observeMovieRecommended(movieId: Int) = local.detailStore.getRecommendedForMovie(movieId)
+    fun observeMovieActors(movieId: Int) = local.detailStore.getActorsForMovie(movieId)
 
 
+    fun observeMovieRecommended(movieId: Int) = local.detailStore.getRecommendedForMovie(movieId)
+    fun observeMovieActors2(movieId: Int) = local.detailStore.getActorsForMovie(movieId)
 
-    fun observeMovieRecommended(movieId: Int) = local.upcomingStore.getRecommendedForMovie(movieId)
-    fun observeMovieActors(movieId: Int) = local.upcomingStore.getActorsForMovie(movieId)
-
-//    fun observeUpcomingRecommendedMovies() = local.upcomingStore.observeRecommendedMovies()
-//    fun observeUpcomingActorsMovies() = local.upcomingStore.observeAssociatedActors()
-//
-//    fun observeTopRatedRecommendedMovies() = local.topRatedStore.observeRecommendedMovies()
-//    fun observeTopRatedActorsMovies() = local.topRatedStore.observeAssociatedActors()
-//
-//    fun observeNowPlayingRecommendedMovies() = local.nowPlayingStore.observeRecommendedMovies()
-//    fun observeNowPlayingActorsMovies() = local.nowPlayingStore.observeAssociatedActors()
-//
-//    fun observePopularRecommendedMovies() = local.popularStore.observeRecommendedMovies()
-//    fun observePopularActorsMovies() = local.popularStore.observeAssociatedActors()
 }

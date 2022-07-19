@@ -14,7 +14,11 @@ class ObserveMovieActors @Inject constructor(
 
     override fun createObservable(params: Params): Flow<List<Cast>> {
         return moviesRepository.observeActors()
-            .map { list ->  list.flatMap { it.value } }
+            .map { list ->
+                list.flatMap {
+                    it.value
+                }
+            }
     }
 
     data class Params(val movieId: Int)

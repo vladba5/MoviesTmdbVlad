@@ -11,9 +11,9 @@ import com.google.android.material.snackbar.Snackbar
     fun View.showSnackBar(message: String, length: Int = Snackbar.LENGTH_SHORT) =
         Snackbar.make(this, message, length).show()
 
-    fun View.showSnackBarWithAction(
+    fun <T>View.showSnackBarWithAction(
         message: String, length: Int = Snackbar.LENGTH_SHORT,
-        actionMessage: String = "Dismiss", function: () -> Unit
+        actionMessage: String = "Dismiss", function: (element: T) -> Unit
     ) =
         Snackbar.make(this, message, length)
             .setAction(actionMessage) { function }.show()

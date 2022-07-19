@@ -10,17 +10,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviestmdb.core.TmdbImageManager
+import com.example.moviestmdb.core.constants.Constants
 import com.example.moviestmdb.core.extensions.launchAndRepeatWithViewLifecycle
 import com.example.moviestmdb.core_ui.util.SpaceItemDecoration
+import com.example.moviestmdb.core_ui.util.showToast
 import com.example.moviestmdb.ui_movies.R
 import com.example.moviestmdb.ui_movies.databinding.FragmentLobbyBinding
-import com.example.moviestmdb.ui_movies.lobby.NowPlayingMoviesCarrouselAdapter
-import com.example.moviestmdb.ui_movies.lobby.PopularMoviesCarrouselAdapter
-import com.example.moviestmdb.ui_movies.lobby.TopRatedMoviesCarrouselAdapter
-import com.example.moviestmdb.ui_movies.lobby.UpcomingMoviesCarrouselAdapter
+import com.example.moviestmdb.ui_movies.lobby.*
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -87,7 +85,11 @@ class MoviesLobbyFragment : Fragment() {
     }
 
     private val onMovieClick: (Int) -> Unit = { movieId ->
-        Timber.i("$movieId")
+        context?.showToast(movieId.toString())
+
+        val args = Bundle();
+        args.putInt(Constants.MOVIE_ID, movieId)
+        findNavController().navigate(R.id.movieDetailsFragment, args)
     }
 
     private fun initPopularAdapter() {
@@ -107,7 +109,7 @@ class MoviesLobbyFragment : Fragment() {
 
         binding.popularMoviesView.title.text = "Popular Movies"
         binding.popularMoviesView.more.setOnClickListener {
-        findNavController().navigate(R.id.navigateToPopularMoviesFragment)
+           findNavController().navigate(R.id.popularMoviesFragment)
         }
     }
 
@@ -128,7 +130,7 @@ class MoviesLobbyFragment : Fragment() {
 
         binding.nowPlayingMoviesView.title.text = "nowPlaying Movies"
         binding.nowPlayingMoviesView.more.setOnClickListener {
-        findNavController().navigate(R.id.navigateToNowPlayingMoviesFragment)
+            findNavController().navigate(R.id.nowPlayingMoviesFragment)
         }
     }
 
@@ -149,7 +151,7 @@ class MoviesLobbyFragment : Fragment() {
 
         binding.upcomingMoviesView.title.text = "upcoming Movies"
         binding.upcomingMoviesView.more.setOnClickListener {
-        findNavController().navigate(R.id.navigateToUpcomingMoviesFragment)
+        findNavController().navigate(R.id.upcomingMoviesFragment)
         }
     }
 
@@ -170,7 +172,19 @@ class MoviesLobbyFragment : Fragment() {
 
         binding.topRatedMoviesView.title.text = "topRated Movies"
         binding.topRatedMoviesView.more.setOnClickListener {
-        findNavController().navigate(R.id.navigateToTopRatedMoviesFragment)
+        findNavController().navigate(R.id.topRatedMoviesFragment)
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
