@@ -24,10 +24,4 @@ class ServiceModule {
     fun provideConfigurationService(retroFit: Retrofit): ConfigurationService {
         return retroFit.create(ConfigurationService::class.java)
     }
-
-
-//    @Provides
-//    fun provideInt(num: Integer) : Int{
-//        return num.toInt()
-//    }
 }

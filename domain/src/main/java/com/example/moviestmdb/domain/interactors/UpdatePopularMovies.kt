@@ -7,6 +7,7 @@ import com.example.moviestmdb.core.di.Popular
 import com.example.moviestmdb.core.result.Result
 import com.example.moviestmdb.core.util.AppCoroutineDispatchers
 import com.example.moviestmdb.domain.FlowInteractor
+import com.example.moviestmdb.domain.interactors.UpdatePopularMovies.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
@@ -16,7 +17,7 @@ class UpdatePopularMovies @Inject constructor(
     private val moviesRepository: MoviesRepository,
     @Popular val popularStore: MoviesStore,
     private val dispatchers: AppCoroutineDispatchers,
-) : FlowInteractor<UpdatePopularMovies.Params, MovieResponse>(dispatchers.io) {
+) : FlowInteractor<Params, MovieResponse>(dispatchers.io) {
 
     override suspend fun doWork(params: Params): Flow<Result<MovieResponse>> {
         val page = when {

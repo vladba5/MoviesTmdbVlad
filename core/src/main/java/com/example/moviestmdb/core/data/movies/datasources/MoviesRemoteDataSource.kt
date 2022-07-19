@@ -1,5 +1,6 @@
 package com.example.moviestmdb.core.data.movies.datasources
 
+import com.example.moviestmdb.MovieCredit
 import com.example.moviestmdb.MovieResponse
 import com.example.moviestmdb.core.network.MovieService
 import com.example.moviestmdb.core.extensions.executeWithRetry
@@ -44,6 +45,24 @@ class MoviesRemoteDataSource @Inject constructor(
         return safeApiCall {
             moviesService
                 .getTopRated(page)
+                .executeWithRetry()
+                .toResult()
+        }
+    }
+
+    suspend fun getRecommended(movieId: Int): Result<MovieResponse> {
+        return safeApiCall {
+            moviesService
+                .getRecommendations(movieId)
+                .executeWithRetry()
+                .toResult()
+        }
+    }
+
+    suspend fun getCredits(movieId: Int): Result<MovieCredit> {
+        return safeApiCall {
+            moviesService
+                .getCredits(movieId)
                 .executeWithRetry()
                 .toResult()
         }
