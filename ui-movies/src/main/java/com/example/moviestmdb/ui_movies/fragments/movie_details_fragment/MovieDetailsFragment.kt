@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,13 +16,9 @@ import com.example.moviestmdb.core.constants.Constants
 import com.example.moviestmdb.core.extensions.launchAndRepeatWithViewLifecycle
 import com.example.moviestmdb.core.util.UiMessage
 import com.example.moviestmdb.core_ui.util.SpaceItemDecoration
-import com.example.moviestmdb.core_ui.util.showSnackBar
 import com.example.moviestmdb.core_ui.util.showSnackBarWithAction
-import com.example.moviestmdb.ui_movies.R
 import com.example.moviestmdb.ui_movies.databinding.FragmentMovieDetailsBinding
-import com.example.moviestmdb.ui_movies.fragments.all_movies_fragment.AllMoviesMovieRowAdapter
 import com.example.moviestmdb.ui_movies.lobby.*
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -69,29 +64,13 @@ class MovieDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupWithNavController(binding.toolbar, findNavController())
 
-        binding.toolbar.title = "Detail Screen"
 
-        val str : String = currentMovieId.toString()
 
-        initRecommendedAdapter()
-        initActorsAdapter()
 
-//        binding.movieImg
-//        binding.wallpaperImg
 
-        binding.titleTxt.text = str
-        binding.ratePercentTxt.text = str
-        binding.voteAmountTxt.text = str
-        binding.statusTitleTxt.text = str
-        binding.statusTxt.text = str
-        binding.budgetTitleTxt.text = str
-        binding.budgetTxt.text = str
-        binding.revenueTitleTxt.text = str
-        binding.revenueTxt.text = str
-        binding.descriptionTitleTxt.text = str
-        binding.descriptionTxt.text = str
-        binding.recommendationTitleTxt.text = str
-        binding.actorsTitleTxt.text = str
+
+
+        loadValues(binding)
 
 
 
@@ -106,27 +85,37 @@ class MovieDetailsFragment : Fragment() {
                     )
                 }
 
-                val r = uiState.recommendedMovies
-                val a = uiState.actorList
-
-                Log.d("TAG", "onViewCreated: $a $r")
-
-
-//                binding.popularMoviesView.setLoading(uiState.popularRefreshing)
-//                popularMoviesAdapter.submitList(uiState.popularMovies)
-//
-//                binding.topRatedMoviesView.setLoading(uiState.topRatedRefreshing)
-//                topRatedMoviesAdapter.submitList(uiState.topRatedMovies)
-//
-//                binding.upcomingMoviesView.setLoading(uiState.upcomingRefreshing)
-//                upcomingMoviesAdapter.submitList(uiState.upcomingMovies)
-//
-//                binding.nowPlayingMoviesView.setLoading(uiState.nowPlayingRefreshing)
-//                nowPlayingMoviesAdapter.submitList(uiState.nowPlayingMovies)
+                recommendedMoviesAdapter.submitList(uiState.recommendedMovies)
+                actorsMoviesAdapter.submitList(uiState.actorList)
             }
         }
     }
 
+    private fun loadValues(binding: FragmentMovieDetailsBinding) {
+        binding.toolbar.title = "Detail Screen"
+
+
+        initRecommendedAdapter()
+        initActorsAdapter()
+
+        val str : String = currentMovieId.toString()
+
+//        binding.movieImg
+//        binding.wallpaperImg
+        binding.titleTxt.text = str
+        binding.ratePercentTxt.text = str
+        binding.voteAmountTxt.text = str
+        binding.statusTitleTxt.text = str
+        binding.statusTxt.text = str
+        binding.budgetTitleTxt.text = str
+        binding.budgetTxt.text = str
+        binding.revenueTitleTxt.text = str
+        binding.revenueTxt.text = str
+        binding.descriptionTitleTxt.text = str
+        binding.descriptionTxt.text = str
+        binding.recommendationTitleTxt.text = str
+        binding.actorsTitleTxt.text = str
+    }
 
 
     private fun initRecommendedAdapter() {

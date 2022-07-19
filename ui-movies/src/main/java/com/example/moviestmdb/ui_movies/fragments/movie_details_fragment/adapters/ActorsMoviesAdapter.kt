@@ -6,15 +6,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.moviestmdb.Movie
-import com.example.moviestmdb.core_ui.databinding.MovieCardBinding
+import com.example.moviestmdb.Cast
 import com.example.moviestmdb.ui_movies.databinding.ActorItemRowBinding
-import com.example.moviestmdb.ui_movies.databinding.RecommendedItemRowBinding
 import com.example.moviestmdb.util.TmdbImageUrlProvider
 
 class ActorsMoviesAdapter(
     private val tmdbImageUrlProvider: TmdbImageUrlProvider
-) : ListAdapter<Movie, ActorsMoviesViewHolder>(ActorsMoviesDiff) {
+) : ListAdapter<Cast, ActorsMoviesViewHolder>(ActorsMoviesDiff) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -29,9 +27,9 @@ class ActorsMoviesAdapter(
     override fun onBindViewHolder(holder: ActorsMoviesViewHolder, position: Int) {
         val entry = getItem(position)
         entry?.let {
-            holder.binding.actorTitle.text = it.title
+            holder.binding.actorTitle.text = it.name
 
-            entry.posterPath?.let { posterPath ->
+            entry.profilePath?.let { posterPath ->
                 Glide.with(holder.itemView)
                     .load(
                         tmdbImageUrlProvider.getPosterUrl(
@@ -49,17 +47,17 @@ class ActorsMoviesViewHolder(
     internal val binding: ActorItemRowBinding
 ) : RecyclerView.ViewHolder(binding.root)
 
-object ActorsMoviesDiff : DiffUtil.ItemCallback<Movie>() {
+object ActorsMoviesDiff : DiffUtil.ItemCallback<Cast>() {
     override fun areItemsTheSame(
-        oldItem: Movie,
-        newItem: Movie
+        oldItem: Cast,
+        newItem: Cast
     ): Boolean {
         return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(
-        oldItem: Movie,
-        newItem: Movie
+        oldItem: Cast,
+        newItem: Cast
     ): Boolean {
         return oldItem == newItem
     }
