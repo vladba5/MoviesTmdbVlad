@@ -5,29 +5,84 @@
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="TextAppearance.Tmdb.Headline2" parent="TextAppearance.MaterialComponents.Headline2"></style>
+    <style name="TextAppearance.Tmdb.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
 
-    <style name="TextAppearance.Tmdb.Headline3" parent="TextAppearance.MaterialComponents.Headline3"></style>
+    </style>
 
-    <style name="TextAppearance.Tmdb.Headline4" parent="TextAppearance.MaterialComponents.Headline4"></style>
+    <style name="TextAppearance.Tmdb.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
 
-    <style name="TextAppearance.Tmdb.Headline5" parent="TextAppearance.MaterialComponents.Headline5"></style>
+    </style>
 
-    <style name="TextAppearance.Tmdb.Headline6" parent="TextAppearance.MaterialComponents.Headline6"></style>
+    <style name="TextAppearance.Tmdb.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+
+    </style>
+
+    <style name="TextAppearance.Tmdb.DetailsText" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textColor">@color/tmdb_grey_600</item>
+    </style>
+
+    <style name="TextAppearance.Tmdb.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textColor">@color/tmdb_blue_800</item>
+        <item name="android:lines">2</item>
+    </style>
+
+    <style name="TextAppearance.Tmdb.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textSize">10sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textColor">@color/tmdb_blue_600</item>
+        <item name="android:lines">2</item>
+    </style>
 
 
-    <style name="TextAppearance.Tmdb.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1"></style>
+    <style name="TextAppearance.Tmdb.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
 
-    <style name="TextAppearance.Tmdb.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2"></style>
+    </style>
 
-    <style name="TextAppearance.Tmdb.Button" parent="TextAppearance.MaterialComponents.Button"></style>
+    <style name="TextAppearance.Tmdb.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
 
-    <style name="TextAppearance.Tmdb.Body1" parent="TextAppearance.MaterialComponents.Body1"></style>
+    </style>
 
-    <style name="TextAppearance.Tmdb.Body2" parent="TextAppearance.MaterialComponents.Body2"></style>
+    <style name="TextAppearance.Tmdb.Button" parent="TextAppearance.MaterialComponents.Button">
 
-    <style name="TextAppearance.Tmdb.Caption" parent="TextAppearance.MaterialComponents.Caption"></style>
+    </style>
 
-    <style name="TextAppearance.Tmdb.Overline" parent="TextAppearance.MaterialComponents.Overline"></style>
+    <style name="TextAppearance.Tmdb.TextViewTitle" parent="Widget.AppCompat.TextView">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Tmdb.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/tmdb_red_200</item>
+    </style>
+
+    <style name="TextAppearance.Tmdb.Body2" parent="TextAppearance.MaterialComponents.Body2">
+
+    </style>
+
+    <style name="TextAppearance.Tmdb.Caption" parent="TextAppearance.MaterialComponents.Caption">
+
+    </style>
+
+    <style name="TextAppearance.Tmdb.Overline" parent="TextAppearance.MaterialComponents.Overline">
+
+    </style>
+
+<!--    <style name="TextAppearance.Tmdb.ListPrimary" parent="TextAppearance.MaterialComponents.Headline6">-->
+<!--        <item name="android:letterSpacing">0</item>-->
+<!--        <item name="android:textStyle">bold</item>-->
+<!--        <item name="android:lines">2</item>-->
+<!--    </style>-->
+
+<!--    <style name="TextAppearance.Tmdb.ListPrimary2" parent="TextAppearance.Tmdb.Body2">-->
+<!--        <item name="android:letterSpacing">0</item>-->
+<!--        <item name="android:textColor">@color/tmdb_red_200</item>-->
+<!--        <item name="android:lines">2</item>-->
+<!--    </style>-->
+
 
 </resources>

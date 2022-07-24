@@ -12,4 +12,7 @@ dependencies {
     implementation(project(Modules.UI_PEOPLE))
     implementation(project(Modules.UI_TVSHOWS))
     implementation(project(Modules.UI_MOVIES))
+    implementation(project(Modules.UI_LOGIN))
+
+    implementation(tmdb.buildSrc.Libs.FireBase.fireBaseAuthKtx)
 }

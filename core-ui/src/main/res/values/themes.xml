@@ -11,7 +11,7 @@
 
         <item name="android:colorBackground">@color/tmdb_blue_50</item>
         <item name="colorSurface">@color/tmdb_white_50</item>
-        <!--        <item name="colorPrimarySurfaceVariant">?attr/colorPrimaryVariant</item>-->
+        <item name="colorPrimarySurfaceVariant">?attr/colorPrimaryVariant</item>
         <item name="colorError">@color/tmdb_red_400</item>
 
         <item name="colorOnPrimary">@color/tmdb_white_50</item>
@@ -25,8 +25,7 @@
         <item name="android:navigationBarColor">@color/nav_bar</item>
 
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Tmdb.SmallComponent</item>
-        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Tmdb.MediumComponent
-        </item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Tmdb.MediumComponent</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Tmdb.LargeComponent</item>
 
         <!--Typography-->
@@ -42,20 +41,13 @@
         <item name="textAppearanceButton">@style/TextAppearance.Tmdb.Button</item>
         <item name="textAppearanceCaption">@style/TextAppearance.Tmdb.Caption</item>
         <item name="textAppearanceOverline">@style/TextAppearance.Tmdb.Overline</item>
-
-        <!--        <item name="emphasisHighAlpha">0.87</item>-->
-        <!--        <item name="emphasisMediumAlpha">0.60</item>-->
-        <!--        <item name="emphasisDisabledAlpha">0.38</item>-->
-
-        <!--        <item name="motionInterpolatorPersistent">@android:interpolator/fast_out_slow_in</item>-->
-        <!--        <item name="motionInterpolatorIncoming">@android:interpolator/decelerate_cubic</item>-->
-        <!--        <item name="motionInterpolatorOutgoing">@android:interpolator/accelerate_cubic</item>-->
+        <item name="textAppearanceDetails">@style/TextAppearance.Tmdb.DetailsText</item>
+<!--        <item name="textAppearanceSubTitle">@style/TextAppearance.Tmdb.ListPrimary2</item>-->
 
         <!--Styles-->
         <item name="appBarLayoutStyle">@style/Widget.Tmdb.AppBar</item>
-        <item name="bottomAppBarStyle">
-            @style/Widget.MaterialComponents.BottomAppBar.PrimarySurface
-        </item>
+<!--        <item name="bottomAppBarStyle">@style/Widget.MaterialComponents.BottomAppBar.PrimarySurface</item>-->
+        <item name="bottomAppBarStyle">@style/Widget.Tmdb.BottomAppBar.PrimarySurface</item>
         <item name="bottomSheetStyle">@style/Widget.MaterialComponents.BottomSheet.Modal</item>
         <item name="navigationViewStyle">@style/Widget.Tmdb.NavigationView</item>
         <item name="snackbarStyle">@style/Widget.Tmdb.Snackbar</item>

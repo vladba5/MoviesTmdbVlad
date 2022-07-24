@@ -17,17 +17,12 @@ class UpdateMovieActors @Inject constructor(
 ) : FlowInteractor<Params, MovieCredit>(dispatchers.io) {
 
     override suspend fun doWork(params: Params): Flow<Result<MovieCredit>> {
-        val movieId = when {
-            params.movieId >= 1 -> params.movieId
-            else -> 1
-        }
-
-        return moviesRepository.getActors(movieId)
+        return moviesRepository.getActors(params.movieId)
             .onEach { result ->
                 when (result) {
                     is Result.Error -> Timber.e(result.exception)
                     is Result.Success -> moviesRepository.saveMovieActors(
-                        movieId = movieId,
+                        movieId = params.movieId,
                         actors = result.data.cast
                     )
                 }

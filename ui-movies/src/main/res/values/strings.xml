@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="top_rating">Top Rating</string>
+    <string name="status_txt">status</string>
+    <string name="budget">Budget</string>
+    <string name="revenue">Revenue</string>
+    <string name="overview">Overview</string>
+    <string name="top_billed_cast">Top Billed Cast</string>
+    <string name="recommendations">Recommendations</string>
+</resources>

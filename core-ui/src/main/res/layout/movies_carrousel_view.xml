@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:text="More"
         android:textColor="?colorSecondary"
-        android:textAppearance="?textAppearanceHeadline6"
+        android:textAppearance="?textAppearanceHeadline5"
         app:layout_constraintBottom_toBottomOf="@+id/title"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintHorizontal_bias="1.0"

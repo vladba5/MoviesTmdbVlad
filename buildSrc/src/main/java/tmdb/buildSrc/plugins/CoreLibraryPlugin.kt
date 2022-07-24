@@ -80,6 +80,10 @@ class CoreLibraryPlugin : Plugin<Project> {
             "implementation"(Libs.AndroidX.Lifecycle.runtime)
             "implementation"(Libs.AndroidX.Fragment.fragmentKtx)
 
+            "implementation"(platform(Libs.FireBase.bom))
+            "implementation"(Libs.FireBase.fireBaseAuthKtx)
+
+
             "api"(Libs.Glide.glide)
             "kapt"(Libs.Glide.compiler)
 

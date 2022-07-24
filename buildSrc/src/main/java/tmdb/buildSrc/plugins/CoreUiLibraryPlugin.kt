@@ -81,6 +81,7 @@ class CoreUiLibraryPlugin : Plugin<Project> {
 
             "implementation"(Libs.timber)
 
+
 //            "implementation"(Libs.AndroidX.Lifecycle.runtime)
 //            "implementation"(Libs.AndroidX.Fragment.fragmentKtx)
         }

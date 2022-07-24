@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/moviesLobbyFragment"
-        android:name="com.example.moviestmdb.ui_movies.fragments.lobby_fragment.MoviesLobbyFragment"
+        android:name="com.example.moviestmdb.ui_movies.fragments.fragments.lobby.MoviesLobbyFragment"
         android:label="MoviesLobbyFragment"
         tools:layout="@layout/fragment_lobby">
 <!--        <action-->
@@ -34,22 +34,22 @@
         tools:layout="@layout/fragment_popular_movies"/>
     <fragment
         android:id="@+id/nowPlayingMoviesFragment"
-        android:name="com.example.moviestmdb.ui_movies.fragments.now_playing_movies_fragment.NowPlayingMoviesFragment"
+        android:name="com.example.moviestmdb.ui_movies.fragments.fragments.now_playing_movies.NowPlayingMoviesFragment"
         android:label="NowPlayingMoviesFragment"
         tools:layout="@layout/fragment_now_playing_movies"/>
     <fragment
         android:id="@+id/topRatedMoviesFragment"
-        android:name="com.example.moviestmdb.ui_movies.fragments.top_rated_movies_fragment.TopRatedMoviesFragment"
+        android:name="com.example.moviestmdb.ui_movies.fragments.fragments.top_rated_movies.TopRatedMoviesFragment"
         android:label="TopRatedMoviesFragment"
         tools:layout="@layout/fragment_top_rated_movies"/>
     <fragment
         android:id="@+id/upcomingMoviesFragment"
-        android:name="com.example.moviestmdb.ui_movies.fragments.upcoming_movies_fragment.UpcomingMoviesFragment"
+        android:name="com.example.moviestmdb.ui_movies.fragments.fragments.upcoming_movies_fragment.UpcomingMoviesFragment"
         android:label="UpcomingMoviesFragment"
         tools:layout="@layout/fragment_upcoming_movies"/>
     <fragment
         android:id="@+id/movieDetailsFragment"
-        android:name="com.example.moviestmdb.ui_movies.fragments.movie_details_fragment.MovieDetailsFragment"
+        android:name="com.example.moviestmdb.ui_movies.fragments.fragments.movie_details.MovieDetailsFragment"
         android:label="MovieDetailsFragment"
         tools:layout="@layout/fragment_movie_details"/>
 

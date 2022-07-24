@@ -5,6 +5,7 @@ import com.example.moviestmdb.Movie
 import com.example.moviestmdb.core.data.movies.datasources.MoviesLocalDataSource
 import com.example.moviestmdb.core.data.movies.datasources.MoviesRemoteDataSource
 import kotlinx.coroutines.flow.flow
+import timber.log.Timber
 import javax.inject.Inject
 
 class MoviesRepository @Inject constructor(
@@ -70,11 +71,11 @@ class MoviesRepository @Inject constructor(
         }
 
     fun saveMovieRecommended(movieId: Int, movies: List<Movie>) {
+        Timber.d("1 vlad saveMovieRecommended id $movieId and size is ${movies.size} ")
         local.detailStore.insertRecommended(movieId, movies)
-
     }
 
-    fun observeRecommendedMovies() = local.detailStore.observeRecommendedMovies()
+    fun observeMovieRecommended(movieId: Int) = local.detailStore.getRecommendedForMovie(movieId)
     //endregion
 
     //region Actors
@@ -87,14 +88,8 @@ class MoviesRepository @Inject constructor(
         local.detailStore.insertActors(movieId, actors)
     }
 
-    fun observeActors() = local.detailStore.observeAssociatedActors()
+    fun observeMovieActors(movieId: Int) = local.detailStore.getActorsForMovie(movieId)
     //endregion
 
-    //fun observeMovieRecommended(movieId: Int) = local.detailStore.getRecommendedForMovie(movieId)
-    fun observeMovieActors(movieId: Int) = local.detailStore.getActorsForMovie(movieId)
-
-
-    fun observeMovieRecommended(movieId: Int) = local.detailStore.getRecommendedForMovie(movieId)
-    fun observeMovieActors2(movieId: Int) = local.detailStore.getActorsForMovie(movieId)
 
 }

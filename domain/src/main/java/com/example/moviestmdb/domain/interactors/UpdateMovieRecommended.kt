@@ -17,17 +17,12 @@ class UpdateMovieRecommended @Inject constructor(
 ) : FlowInteractor<Params, MovieResponse>(dispatchers.io) {
 
     override suspend fun doWork(params: Params): Flow<Result<MovieResponse>> {
-        val movieId = when {
-            params.movieId >= 1 -> params.movieId
-            else -> 1
-        }
-
-        return moviesRepository.getRecommended(movieId)
+        return moviesRepository.getRecommended(params.movieId)
             .onEach { result ->
                 when (result) {
                     is Result.Error -> Timber.e(result.exception)
                     is Result.Success -> moviesRepository.saveMovieRecommended(
-                        movieId = movieId,
+                        movieId = params.movieId,
                         movies = result.data.movieList
                     )
                 }

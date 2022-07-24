@@ -17,4 +17,9 @@
         android:title="people"
         android:icon="@drawable/ic_people"/>
 
+    <item
+        android:id="@+id/login_graph"
+        android:title="login"
+        android:icon="@drawable/ic_star"/>
+
 </menu>

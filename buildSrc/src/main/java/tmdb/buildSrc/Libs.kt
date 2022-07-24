@@ -122,4 +122,13 @@ object Libs {
         private const val version = "1.6.0"
         const val threeten = "org.threeten:threetenbp:$version:no-tzdb"
     }
+
+    object FireBase{
+        private const val version = "30.3.0"
+        const val bom = "com.google.firebase:firebase-bom:${version}"
+        const val fireBaseAuthKtx = "com.google.firebase:firebase-auth-ktx:"
+        const val googleServices ="com.google.gms.google-services"
+        const val googleServicesPlugin ="com.google.gms:google-services:4.3.13"
+
+    }
 }

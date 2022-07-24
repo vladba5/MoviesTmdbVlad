@@ -22,8 +22,6 @@ class MoviesStore @Inject constructor() {
         }
     }
 
-
-
     fun observeMovies(): SharedFlow<Map<Int, List<Movie>>> = _movies.asSharedFlow()
 
     fun updatePage(page: Int, movies: List<Movie>) {
@@ -54,4 +52,9 @@ class MoviesStore @Inject constructor() {
         }
     }
 
+    fun getAllStoreMovies() : Flow<List<Movie>> {
+        return _movies.map {
+            it.values.flatten()
+        }
+    }
 }
