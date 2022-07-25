@@ -10,6 +10,9 @@
         android:name="com.example.moviestmdb.ui_movies.fragments.fragments.lobby.MoviesLobbyFragment"
         android:label="MoviesLobbyFragment"
         tools:layout="@layout/fragment_lobby">
+
+        <deepLink
+            app:uri="android-app://example.tmdb.app/lobby_fragment" />
 <!--        <action-->
 <!--            android:id="@+id/navigateToPopularMoviesFragment"-->
 <!--            app:destination="@id/popularMoviesFragment" />-->

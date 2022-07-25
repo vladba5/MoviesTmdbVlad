@@ -7,5 +7,9 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.moviestmdb.ui_login.LoginFragment"
-        android:label="LoginFragment" />
+        android:label="LoginFragment">
+
+        <deepLink
+            app:uri="android-app://example.tmdb.app/login_fragment" />
+    </fragment>
 </navigation>
