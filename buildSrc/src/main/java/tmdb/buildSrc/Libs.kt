@@ -127,6 +127,7 @@ object Libs {
         private const val version = "30.3.0"
         const val bom = "com.google.firebase:firebase-bom:${version}"
         const val fireBaseAuthKtx = "com.google.firebase:firebase-auth-ktx:"
+        const val fireBaseFireStore = "com.google.firebase:firebase-firestore-ktx:"
         const val fireBaseDataBase = "com.google.firebase:firebase-database-ktx:"
         const val googleServices ="com.google.gms.google-services"
         const val googleServicesPlugin ="com.google.gms:google-services:4.3.13"

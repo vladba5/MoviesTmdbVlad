@@ -13,4 +13,8 @@ class ProfileViewModel @Inject constructor(
     fun logOut(){
         fireBaseManager.logout()
     }
+
+    fun updateData(name: String, phone : String, age : Int){
+        fireBaseManager.updateProfile(name, phone , age)
+    }
 }

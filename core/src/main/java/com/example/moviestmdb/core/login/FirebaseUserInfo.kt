@@ -1,11 +1,14 @@
 package com.example.moviestmdb.core.data.login
 
 import android.net.Uri
+import com.example.moviestmdb.core.managers.FireBaseManager
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserInfo
 
 open class FirebaseUserInfo(
-    private val firebaseUser: FirebaseUser?
+//    private val fireBaseManager: FireBaseManager?,
+    private val firebaseUser: FirebaseUser?,
+
 ) : AuthenticatedUserInfoBasic {
 
     override fun isSignedIn(): Boolean = firebaseUser != null

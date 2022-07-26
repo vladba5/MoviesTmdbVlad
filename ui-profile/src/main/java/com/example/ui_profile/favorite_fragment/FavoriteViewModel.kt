@@ -9,4 +9,5 @@ import javax.inject.Inject
 class FavoriteViewModel @Inject constructor(
     val fireBaseManager: FireBaseManager,
 ): ViewModel() {
+
 }

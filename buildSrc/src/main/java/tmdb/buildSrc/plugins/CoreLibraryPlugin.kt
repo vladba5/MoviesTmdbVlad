@@ -83,6 +83,7 @@ class CoreLibraryPlugin : Plugin<Project> {
             "implementation"(platform(Libs.FireBase.bom))
             "implementation"(Libs.FireBase.fireBaseAuthKtx)
             "implementation"(Libs.FireBase.fireBaseDataBase)
+            "implementation"(Libs.FireBase.fireBaseFireStore)
 
 
             "api"(Libs.Glide.glide)

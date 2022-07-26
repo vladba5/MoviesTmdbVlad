@@ -28,6 +28,11 @@ class ProfileFragment : Fragment() {
         binding.profileLogOutBtn.setOnClickListener {
             viewModel.logOut()
         }
+
+
+        binding.profileUpdateBtn.setOnClickListener {
+            viewModel.updateData("name", "phone", 30)
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 }

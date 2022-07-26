@@ -1,7 +1,6 @@
 package com.example.moviestmdb.core.data.login
 
 import com.example.moviestmdb.core.di.ApplicationScope
-import com.example.moviestmdb.core.util.AppCoroutineDispatchers
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.awaitClose
@@ -12,19 +11,19 @@ import javax.inject.Singleton
 
 @Singleton
 class FirebaseAuthStateUserDataSource @Inject constructor(
-    private val firebase: FirebaseAuth,
+    //private val firebaseManager: FireBaseManager,
+    private val mAuth: FirebaseAuth,
     @ApplicationScope private val externalScope: CoroutineScope,
-    private val dispatchers: AppCoroutineDispatchers,
-    ) {
+) {
 
     private val basicUserInfo: SharedFlow<AuthenticatedUserInfoBasic?> =
-        callbackFlow<FirebaseAuth> {
+        callbackFlow {
             val authStateListener: ((FirebaseAuth) -> Unit) = { auth ->
                 // This callback gets always executed on the main thread because of Firebase
                 trySend(auth)
             }
-            firebase.addAuthStateListener(authStateListener)
-            awaitClose { firebase.removeAuthStateListener(authStateListener) }
+            mAuth.addAuthStateListener(authStateListener)
+            awaitClose { mAuth.removeAuthStateListener(authStateListener) }
         }
             .map { authState ->
                 // This map gets executed in the Flow's context
@@ -38,7 +37,7 @@ class FirebaseAuthStateUserDataSource @Inject constructor(
 
     fun getBasicUserInfo(): Flow<AuthenticatedUserInfoBasic?> = basicUserInfo
 
-    private suspend fun processAuthState(auth: FirebaseAuth): AuthenticatedUserInfoBasic? {
+    private fun processAuthState(auth: FirebaseAuth): AuthenticatedUserInfoBasic? {
         // Listener that saves the [FirebaseUser], fetches the ID token
         // and updates the user ID observable.
         Timber.d("Received a FirebaseAuth update.")
@@ -48,6 +47,7 @@ class FirebaseAuthStateUserDataSource @Inject constructor(
         }
 
         // Send the current user for observers
-        return FirebaseUserInfo(auth.currentUser)
+        //return FirebaseUserInfo(auth.currentUser)
+        return FirebaseUserInfo(mAuth.currentUser)
     }
 }

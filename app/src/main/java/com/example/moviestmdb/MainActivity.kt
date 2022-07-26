@@ -24,10 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
-    private val viewmodel: MainViewModel by viewModels()
-
-//    @Inject
-//    lateinit var firebaseAuthStateUserDataSource: FirebaseAuthStateUserDataSource
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setupWithNavController(navController)
 
         lifecycleScope.launchWhenStarted {
-            viewmodel.loginState().collectLatest { connected ->
+            viewModel.loginState().collectLatest { connected ->
                 when (connected) {
                     true -> navController.popBackStack(id.login_graph, false)
                     false -> navController.navigate(id.login_graph)

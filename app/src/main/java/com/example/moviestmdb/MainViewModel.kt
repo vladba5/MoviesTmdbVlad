@@ -8,10 +8,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    val fireBaseManager: FireBaseManager
+    private val fireBaseManager: FireBaseManager
 ) : ViewModel() {
 
-    fun loginState(): Flow<Boolean> {
+    fun loginState(): Flow<Boolean?> {
         return fireBaseManager.isConnected()
     }
 }
