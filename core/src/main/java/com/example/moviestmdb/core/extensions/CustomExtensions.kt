@@ -4,9 +4,6 @@ import android.content.Context
 import android.view.View
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
 
 fun Context.showToast(message: String, length: Int = Toast.LENGTH_SHORT) =
         Toast.makeText(this, message, length).show()

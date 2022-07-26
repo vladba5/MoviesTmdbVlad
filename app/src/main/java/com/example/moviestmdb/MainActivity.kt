@@ -1,23 +1,20 @@
 package com.example.moviestmdb
 
-import android.content.Context
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.AttributeSet
-import android.util.Log
-import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.example.moviestmdb.core.extensions.launchAndRepeatWithViewLifecycle
+import com.example.moviestmdb.core.data.login.FirebaseAuthStateUserDataSource
 import com.example.moviestmdb.databinding.ActivityMainBinding
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.example.moviestmdb.ui_login.LoginViewModel
+import com.example.moviestmdb.ui_login.R.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collectLatest
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -27,8 +24,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
-    //private lateinit var mAuth: FirebaseAuth
+    private val viewmodel: MainViewModel by viewModels()
 
+//    @Inject
+//    lateinit var firebaseAuthStateUserDataSource: FirebaseAuthStateUserDataSource
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,23 +41,15 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         binding.bottomNavigationView.setupWithNavController(navController)
-        //mAuth = Firebase.auth
 
-    }
-
-
-    override fun onCreateView(
-        parent: View?,
-        name: String,
-        context: Context,
-        attrs: AttributeSet
-    ): View? {
-        launchAndRepeatWithViewLifecycle{
-            FirebaseAuth.AuthStateListener{firebaseAuth ->
-                //firebaseAuth.
+        lifecycleScope.launchWhenStarted {
+            viewmodel.loginState().collectLatest { connected ->
+                when (connected) {
+                    true -> navController.popBackStack(id.login_graph, false)
+                    false -> navController.navigate(id.login_graph)
+                }
             }
         }
-        return super.onCreateView(parent, name, context, attrs)
 
     }
 }

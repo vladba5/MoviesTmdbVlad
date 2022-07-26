@@ -1,4 +1,3 @@
-import tmdb.buildSrc.Libs
 import tmdb.buildSrc.Modules.CORE
 import tmdb.buildSrc.Modules.CORE_UI
 import tmdb.buildSrc.Modules.DOMAIN

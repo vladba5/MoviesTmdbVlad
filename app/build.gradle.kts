@@ -13,6 +13,9 @@ dependencies {
     implementation(project(Modules.UI_TVSHOWS))
     implementation(project(Modules.UI_MOVIES))
     implementation(project(Modules.UI_LOGIN))
+    implementation(project(Modules.UI_PROFILE))
 
-    implementation(tmdb.buildSrc.Libs.FireBase.fireBaseAuthKtx)
+//    implementation(platform(tmdb.buildSrc.Libs.FireBase.bom))
+//    implementation(tmdb.buildSrc.Libs.FireBase.fireBaseAuthKtx)
+//    implementation(tmdb.buildSrc.Libs.FireBase.fireBaseDataBase)
 }
