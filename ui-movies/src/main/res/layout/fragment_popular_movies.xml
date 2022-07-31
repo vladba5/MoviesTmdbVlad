@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -17,13 +18,73 @@
             app:title="Movies" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/popular_recycler"
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/all_movies_row_item"
-    />
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/comedy_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comedy"
+                app:layout_constraintEnd_toStartOf="@+id/action_chip"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/action_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Action"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/drama_chip"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/comedy_chip" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/drama_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Drama"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/horror_chip"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/action_chip" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/horror_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Horror"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/drama_chip" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/popular_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/horror_chip"
+                tools:listitem="@layout/all_movies_row_item" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

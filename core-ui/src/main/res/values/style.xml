@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Widget.Tmdb.AppBar" parent="@style/Widget.Material3.AppBarLayout">
-        <item name="android:textSize">72sp</item>
+    androidx.appcompat.widget.Toolbar
+    <style name="Widget.Tmdb.AppBar" parent="@style/Widget.AppCompat.Toolbar">
+<!--        <item name="android:textSize">72sp</item>-->
     </style>
 
     <style name="Widget.Tmdb.BottomAppBar.PrimarySurface" parent="@style/Widget.MaterialComponents.BottomAppBar.PrimarySurface">

@@ -9,6 +9,8 @@ import com.example.moviestmdb.core.util.AppCoroutineDispatchers
 import com.example.moviestmdb.core.util.ObservableLoadingCounter
 import com.example.moviestmdb.core.util.UiMessageManager
 import com.example.moviestmdb.core.util.collectStatus
+import com.example.moviestmdb.domain.interactors.AddFavoriteMovie
+import com.example.moviestmdb.domain.interactors.RemoveFavoriteMovie
 import com.example.moviestmdb.domain.interactors.UpdateMovieActors
 import com.example.moviestmdb.domain.interactors.UpdateMovieRecommended
 import com.example.moviestmdb.domain.observers.ObserveFavoriteMovie
@@ -27,6 +29,8 @@ import javax.inject.Inject
 class MovieDetailsViewModel @Inject constructor(
     private val updateMovieRecommended: UpdateMovieRecommended,
     private val updateMovieActors: UpdateMovieActors,
+    private val addFavoriteMovie: AddFavoriteMovie,
+    private val removeFavoriteMovie: RemoveFavoriteMovie,
     val observeRecommendedMovies: ObserveRecommendedMovies,
     val observeMovieActors: ObserveMovieActors,
     val observerIsFavorite: ObserverIsFavorite,
@@ -56,7 +60,9 @@ class MovieDetailsViewModel @Inject constructor(
         observeMovieActors.flow,
         observeMovieById.flow,
         uiMessageManager.message
-    ) { recommendedRefreshing, actorsRefreshing, isFavorite,recommendedMovies,
+    ) { recommendedRefreshing, actorsRefreshing
+        ,isFavorite
+        ,recommendedMovies,
         movieActors, movie, message ->
         DetailsUiState(
             actorsRefreshing = actorsRefreshing,
@@ -88,6 +94,18 @@ class MovieDetailsViewModel @Inject constructor(
                     actorsLoadingState,
                     uiMessageManager
                 )
+        }
+    }
+
+    fun addMovie(movieId: Int){
+        viewModelScope.launch(dispatchers.io) {
+            addFavoriteMovie(AddFavoriteMovie.Params(movieId))
+        }
+    }
+
+    fun removeMovie(movieId: Int){
+        viewModelScope.launch(dispatchers.io) {
+            removeFavoriteMovie(RemoveFavoriteMovie.Params(movieId))
         }
     }
 

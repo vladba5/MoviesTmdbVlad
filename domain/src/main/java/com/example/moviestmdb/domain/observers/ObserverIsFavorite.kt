@@ -8,10 +8,7 @@ import com.example.moviestmdb.core.di.TopRated
 import com.example.moviestmdb.core.di.Upcoming
 import com.example.moviestmdb.core.managers.FireBaseManager
 import com.example.moviestmdb.domain.SubjectInteractor
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 class ObserverIsFavorite @Inject constructor(
@@ -20,33 +17,30 @@ class ObserverIsFavorite @Inject constructor(
     @Upcoming private val upcomingStore: MoviesStore,
     @NowPlaying private val nowPlayingStore: MoviesStore,
     val fireBaseManager: FireBaseManager
-)
-//    : SubjectInteractor<ObserverIsFavorite.Params, Boolean>() {
-//
-//    override fun createObservable(params: ObserverIsFavorite.Params): Flow<Boolean> {
-////        return combine(
-////            popularStore.getAllStoreMovies(),
-////            topRatedStore.getAllStoreMovies(),
-////            upcomingStore.getAllStoreMovies(),
-////            nowPlayingStore.getAllStoreMovies(),
-////            fireBaseManager.observeFavoritesMovies()
-////        ) { popularList, topRatedList, upcomingList, nowPlayingList, favoriteMovies ->
-////            val moviesList = mutableListOf<Movie>()
-////            moviesList.addAll(popularList)
-////            moviesList.addAll(topRatedList)
-////            moviesList.addAll(upcomingList)
-////            moviesList.addAll(nowPlayingList)
-////            moviesList.filter {
-////                it.id == params.movieId
-////            }
-////        }
-//
-////            .map {
-////            it.firstOrNull{
-////                it.id == params.movieId
-////            }
-////        }
-//    }
-//
-//    data class Params(val movieId: Int)
+) : SubjectInteractor<ObserverIsFavorite.Params, Boolean>() {
+
+    override fun createObservable(params: ObserverIsFavorite.Params): Flow<Boolean> {
+        return combine(
+            popularStore.getAllStoreMovies(),
+            topRatedStore.getAllStoreMovies(),
+            upcomingStore.getAllStoreMovies(),
+            nowPlayingStore.getAllStoreMovies(),
+            fireBaseManager.observeFavoritesMovies()
+        ) { popularList, topRatedList, upcomingList, nowPlayingList, favoriteMovies ->
+            val moviesList = mutableListOf<Movie>()
+            moviesList.addAll(popularList)
+            moviesList.addAll(topRatedList)
+            moviesList.addAll(upcomingList)
+            moviesList.addAll(nowPlayingList)
+            moviesList
+        }.map {
+            it.firstOrNull {
+                it.id == params.movieId
+            }
+        }.map { favoriteMovie ->
+            favoriteMovie == null
+        }
+    }
+
+    data class Params(val movieId: Int)
 }

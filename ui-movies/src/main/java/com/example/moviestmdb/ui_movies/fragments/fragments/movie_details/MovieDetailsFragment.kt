@@ -46,7 +46,7 @@ class MovieDetailsFragment : Fragment() {
         return binding.root
     }
 
-    fun clearMessage(message: UiMessage) {
+    private fun clearMessage(message: UiMessage) {
         viewModel.clearMessage(message.id)
     }
 
@@ -60,7 +60,7 @@ class MovieDetailsFragment : Fragment() {
         launchAndRepeatWithViewLifecycle {
             viewModel.detailState.collect { uiState ->
 
-                binding.swipeRefresh.isRefreshing = uiState.refreshing
+               // binding.swipeRefresh.isRefreshing = uiState.refreshing
 
                 uiState.message?.let { message ->
                     view.showSnackBarWithAction(
@@ -74,9 +74,9 @@ class MovieDetailsFragment : Fragment() {
             }
         }
 
-        binding.swipeRefresh.setOnRefreshListener {
-            viewModel.refresh()
-        }
+//        binding.swipeRefresh.setOnRefreshListener {
+//            viewModel.refresh()
+//        }
     }
 
     private fun loadBindingData(
@@ -84,6 +84,14 @@ class MovieDetailsFragment : Fragment() {
         detailsUiState: DetailsUiState
     ) {
         binding.toolbar.title = "Detail Screen"
+
+            binding.favoriteSwitch.setOnCheckedChangeListener{ _, isChecked ->
+                if(isChecked){
+                    viewModel.addMovie(123) //detailsUiState.movie.id
+                }else{
+                    viewModel.removeMovie(123)
+            }
+        }
 
         detailsUiState.movie?.let { movie ->
 
@@ -118,6 +126,8 @@ class MovieDetailsFragment : Fragment() {
             binding.budgetTxt.text = "34234209348"
             binding.revenueTxt.text = "23048224"
             binding.descriptionTxt.text = movie.overView
+
+            binding.favoriteSwitch.isEnabled = detailsUiState.isFavorite
         }
 
         recommendedMoviesAdapter.submitList(detailsUiState.recommendedMovies)
