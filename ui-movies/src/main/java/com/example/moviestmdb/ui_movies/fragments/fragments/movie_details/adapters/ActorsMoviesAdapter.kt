@@ -28,7 +28,7 @@ class ActorsMoviesAdapter(
         val entry = getItem(position)
         entry?.let {
             holder.binding.actorTitle.text = it.name
-            holder.binding.actorTitle.text = it.character
+            holder.binding.actorSubtitle.text = it.character
 
             entry.profilePath?.let { posterPath ->
                 Glide.with(holder.itemView)

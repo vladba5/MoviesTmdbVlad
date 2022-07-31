@@ -4,14 +4,20 @@ import com.example.moviestmdb.Cast
 import com.example.moviestmdb.Movie
 import com.example.moviestmdb.core.data.movies.datasources.MoviesLocalDataSource
 import com.example.moviestmdb.core.data.movies.datasources.MoviesRemoteDataSource
+import com.example.moviestmdb.core.managers.FireBaseManager
 import kotlinx.coroutines.flow.flow
 import timber.log.Timber
 import javax.inject.Inject
 
 class MoviesRepository @Inject constructor(
     private val remote: MoviesRemoteDataSource,
-    private val local: MoviesLocalDataSource
+    private val local: MoviesLocalDataSource,
+    val fireBaseManager: FireBaseManager
 ) {
+
+    fun getFavoriteMovies() =
+        fireBaseManager.observeFavoritesMovies()
+
     //region popular movies
     suspend fun getPopularMovies(page: Int) =
         flow {

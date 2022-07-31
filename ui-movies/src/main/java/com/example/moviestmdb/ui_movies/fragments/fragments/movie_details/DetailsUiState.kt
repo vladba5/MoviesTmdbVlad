@@ -9,6 +9,7 @@ data class DetailsUiState (
     val recommendedRefreshing: Boolean = false,
     val actorList: List<Cast> = emptyList(),
     val actorsRefreshing: Boolean = false,
+    val isFavorite: Boolean = false,
     val movie: Movie? = null,
     val message: UiMessage? = null
 ) {

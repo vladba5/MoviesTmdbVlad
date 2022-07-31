@@ -27,7 +27,6 @@ class MainLifecycleListener @Inject constructor(
         if(duration >= Duration.ofMinutes(1).seconds){
             invokeLogOut()
         }
-
     }
 
     private fun invokeLogOut() {

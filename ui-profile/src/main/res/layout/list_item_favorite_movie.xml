@@ -1,77 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:padding="4dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    android:layout_width="150dp"
+    android:layout_height="280dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_start_content"
+            android:id="@+id/guideline_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.33" />
+            app:layout_constraintGuide_begin="16dp" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_end_content"
+            android:id="@+id/guideline_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="16dp" />
 
-        <com.example.moviestmdb.core_ui.widget.PopularityBadgeView
-            android:id="@+id/favorite_popularity_badge"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_image_bottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_start_content"
-            app:layout_constraintStart_toStartOf="@+id/guideline_start_content" />
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.70" />
 
         <ImageView
-            android:id="@+id/favorite_image"
+            android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="4:3"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_start_content"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_image_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <com.example.moviestmdb.core_ui.widget.PopularityBadgeView
+            android:id="@+id/popularity_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_image_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.09"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline_image_bottom"
+            app:layout_constraintVertical_bias="0.42000002" />
 
         <TextView
-            android:id="@+id/favorite_title"
+            android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:textAppearance="?textAppearanceListItem"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_end_content"
-            app:layout_constraintStart_toStartOf="@+id/guideline_start_content"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Sonic the Hedgehog 2" />
+            android:layout_marginTop="28dp"
+            android:lines="1"
+            android:text="TextView"
+            android:textAppearance="?textAppearanceHeadline5"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/guideline_image_bottom"
+            tools:text="Canım Annem" />
 
         <TextView
-            android:id="@+id/favorite_subtitle"
+            android:id="@+id/subtitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:layout_marginTop="4dp"
-            android:textAppearance="?textAppearanceBody2"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_end_content"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="@+id/guideline_start_content"
-            app:layout_constraintTop_toBottomOf="@+id/favorite_title"
-            tools:text="1321 votes • Mar 21, 2022" />
+            android:lines="1"
+            android:text="TextView"
+            android:textAppearance="?textAppearanceHeadline6"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:text="Feb 14, 2022" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </com.google.android.material.card.MaterialCardView>

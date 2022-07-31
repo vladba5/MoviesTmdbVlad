@@ -162,6 +162,17 @@
                     app:layout_constraintTop_toBottomOf="@+id/title_txt"
                     tools:text="released" />
 
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/favorite_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/vertical_guide_image"
+                    app:layout_constraintTop_toBottomOf="@+id/status_txt"
+                    tools:enabled="true"/>
+
                 <TextView
                     android:id="@+id/budget_title_txt"
                     android:layout_width="0dp"
@@ -214,7 +225,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:barrierDirection="bottom"
-                    app:constraint_referenced_ids="revenue_txt, revenue_title_txt" />
+                    app:constraint_referenced_ids="revenue_txt, revenue_title_txt, movie_img" />
 
                 <TextView
                     android:id="@+id/description_title_txt"

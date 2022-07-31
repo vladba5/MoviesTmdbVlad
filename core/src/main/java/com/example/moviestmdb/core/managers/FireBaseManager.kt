@@ -53,38 +53,42 @@ class FireBaseManager @Inject constructor(
 //        moviesCollectionRef.add(movie)
 //    }
 
-    fun isConnected() : Flow<Boolean?>{
+    fun isConnected(): Flow<Boolean?> {
         return firebaseAuthStateUserDataSource.getBasicUserInfo().map {
             it?.isSignedIn()
         }
     }
 
-    fun insertFavoriteMovies(movieId: Int){
+    fun insertFavoriteMovies(movieId: Int): Flow<Boolean> {
         val favoriteMovies = HashMap<String, Any>()
         favoriteMovies[movieId.toString()] = true
 
-        firebaseAuth.currentUser?.let { user ->
-            firebaseDatabase.reference
-                .child("favorites")
-                .child(user.uid)
-                .updateChildren(favoriteMovies)
-                .addOnCompleteListener {
-                    it.isSuccessful
-                }
+        return callbackFlow {
+            firebaseAuth.currentUser?.let { user ->
+                firebaseDatabase.reference
+                    .child("favorites")
+                    .child(user.uid)
+                    .updateChildren(favoriteMovies)
+                    .addOnCompleteListener {
+                        it.isSuccessful
+                    }
+            }
         }
     }
 
 
-    fun removeFavoriteMovies(movieId: Int){
-        firebaseAuth.currentUser?.let {
-            firebaseDatabase.reference
-                .child("favorites")
-                .child(it.uid)
-                .child(movieId.toString())
-                .removeValue()
-                .addOnCompleteListener {
-                    it.isSuccessful
-                }
+    fun removeFavoriteMovies(movieId: Int): Flow<Boolean> {
+        return callbackFlow {
+            firebaseAuth.currentUser?.let { user ->
+                firebaseDatabase.reference
+                    .child("favorites")
+                    .child(user.uid)
+                    .child(movieId.toString())
+                    .removeValue()
+                    .addOnCompleteListener {
+                        it.isSuccessful
+                    }
+            }
         }
     }
 
@@ -139,7 +143,8 @@ class FireBaseManager @Inject constructor(
 }
 
 
-data class Profile (
+data class Profile(
     val name: String,
     val phone: String,
-    val age: Int)
+    val age: Int
+)

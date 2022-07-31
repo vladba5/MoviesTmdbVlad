@@ -2,7 +2,7 @@
 <resources>
 
     <style name="TextAppearance.Tmdb.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
-        <item name="android:textSize">20sp</item>
+<!--        <item name="android:textSize">20sp</item>-->
     </style>
 
     <style name="TextAppearance.Tmdb.Headline2" parent="TextAppearance.MaterialComponents.Headline2">

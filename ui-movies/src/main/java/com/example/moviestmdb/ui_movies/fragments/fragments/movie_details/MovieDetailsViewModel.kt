@@ -11,6 +11,8 @@ import com.example.moviestmdb.core.util.UiMessageManager
 import com.example.moviestmdb.core.util.collectStatus
 import com.example.moviestmdb.domain.interactors.UpdateMovieActors
 import com.example.moviestmdb.domain.interactors.UpdateMovieRecommended
+import com.example.moviestmdb.domain.observers.ObserveFavoriteMovie
+import com.example.moviestmdb.domain.observers.ObserverIsFavorite
 import com.example.moviestmdb.domain.observers.details_observers.ObserveMovieActors
 import com.example.moviestmdb.domain.observers.details_observers.ObserveMovieById
 import com.example.moviestmdb.domain.observers.details_observers.ObserveRecommendedMovies
@@ -27,6 +29,7 @@ class MovieDetailsViewModel @Inject constructor(
     private val updateMovieActors: UpdateMovieActors,
     val observeRecommendedMovies: ObserveRecommendedMovies,
     val observeMovieActors: ObserveMovieActors,
+    val observerIsFavorite: ObserverIsFavorite,
     val observeMovieById: ObserveMovieById,
     savedStateHandle: SavedStateHandle,
     private val dispatchers: AppCoroutineDispatchers
@@ -48,16 +51,18 @@ class MovieDetailsViewModel @Inject constructor(
     val detailState: StateFlow<DetailsUiState> = combine(
         recommendedLoadingState.observable,
         actorsLoadingState.observable,
+        observerIsFavorite.flow,
         observeRecommendedMovies.flow,
         observeMovieActors.flow,
         observeMovieById.flow,
         uiMessageManager.message
-    ) { recommendedRefreshing, actorsRefreshing, recommendedMovies,
+    ) { recommendedRefreshing, actorsRefreshing, isFavorite,recommendedMovies,
         movieActors, movie, message ->
         DetailsUiState(
             actorsRefreshing = actorsRefreshing,
             recommendedRefreshing = recommendedRefreshing,
             recommendedMovies = recommendedMovies,
+            isFavorite = isFavorite,
             actorList = movieActors,
             movie = movie,
             message = message
