@@ -15,6 +15,6 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun updateData(name: String, phone : String, age : Int){
-        fireBaseManager.updateProfile(name, phone , age)
+       // fireBaseManager.updateProfile(name, phone , age)
     }
 }
