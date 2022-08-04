@@ -24,7 +24,7 @@ class MainLifecycleListener @Inject constructor(
         Timber.i("vlad onStart Listener")
 
         val duration = Duration.between(lastTime, LocalDateTime.now()).seconds
-        if(duration >= Duration.ofMinutes(1).seconds){
+        if(duration >= Duration.ofMinutes(600).seconds){
             invokeLogOut()
         }
     }

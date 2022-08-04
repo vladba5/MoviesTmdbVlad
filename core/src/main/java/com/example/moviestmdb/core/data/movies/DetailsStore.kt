@@ -1,6 +1,7 @@
 package com.example.moviestmdb.core.data.movies
 
 import com.example.moviestmdb.Cast
+import com.example.moviestmdb.Genre
 import com.example.moviestmdb.Movie
 import com.example.moviestmdb.MovieCredit
 import kotlinx.coroutines.flow.*
@@ -20,22 +21,15 @@ class DetailsStore @Inject constructor(){
     fun insertRecommended(movieId: Int, movies: List<Movie>) {
         val map = _recommendedMovies.replayCache.first().toMutableMap()
         map[movieId] = movies
-        Timber.d("4 vlad movieId id $movieId")
         _recommendedMovies.tryEmit(map)
-        Timber.d("4 vlad movieId id $movieId")
 //        _recommendedMovies.tryEmit(mapOf(movieId to movies))
-        Timber.d("vlad 666")
-
     }
 
     fun insertActors(movieId: Int, actors: List<Cast>) {
         val map = _associatedActors.replayCache.first().toMutableMap()
         map[movieId] = actors
         _associatedActors.tryEmit(map)
-        Timber.d("3 vlad movieId id $movieId")
 //        _associatedActors.tryEmit(mapOf(movieId to actors))
-        Timber.d("vlad 777")
-
     }
 
     fun deleteAll() {

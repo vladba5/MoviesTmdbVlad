@@ -1,6 +1,8 @@
 package com.example.moviestmdb.core.network
 
 import android.graphics.pdf.PdfDocument
+import com.example.moviestmdb.Genre
+import com.example.moviestmdb.GenreResponse
 import com.example.moviestmdb.MovieCredit
 import com.example.moviestmdb.MovieResponse
 import retrofit2.Call
@@ -8,6 +10,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.QueryMap
 
 interface MovieService {
 
@@ -41,4 +44,13 @@ interface MovieService {
         @Path("movieId") id: Int
     ) : Call<MovieResponse>
 
+    @GET("genre/movie/list")
+    fun getGenre(
+    ) : Call<GenreResponse>
+
+    @GET("/discover/movie")
+    fun getDiscover(
+        @Query("page") page: Int,
+        @QueryMap queries : Map<String, String>
+    ) : Call<MovieResponse>
 }

@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="120dp"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.Guideline
@@ -94,5 +94,19 @@
         app:layout_constraintEnd_toStartOf="@+id/vertical_right_name_guide"
         app:layout_constraintStart_toStartOf="@+id/vertical_left_name_guide"
         app:layout_constraintTop_toTopOf="@+id/horizontal_movie_info_guide" />
+
+    <HorizontalScrollView
+        android:id="@+id/chip_horizontal_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_right_name_guide"
+        app:layout_constraintStart_toStartOf="@+id/vertical_left_name_guide"
+        app:layout_constraintTop_toBottomOf="@+id/movie_info">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+    </HorizontalScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

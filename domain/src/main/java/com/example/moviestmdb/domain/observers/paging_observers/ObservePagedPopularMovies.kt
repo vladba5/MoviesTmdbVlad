@@ -9,6 +9,7 @@ import com.example.moviestmdb.domain.PagingInteractor
 import com.example.moviestmdb.domain.interactors.UpdatePopularMovies
 import com.example.moviestmdb.domain.pagingSources.MoviesPagingSource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filter
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
@@ -28,6 +29,9 @@ class ObservePagedPopularMovies @Inject constructor(
             },
             pagingSourceFactory = pagingSourceFactory
         ).flow
+//            .filter {
+//
+//        }
     }
 
     private val pagingSourceFactory = InvalidatingPagingSourceFactory(::createPagingSource)

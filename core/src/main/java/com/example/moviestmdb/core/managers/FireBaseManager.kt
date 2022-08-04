@@ -1,5 +1,6 @@
 package com.example.moviestmdb.core.managers
 
+import android.util.Log
 import com.example.moviestmdb.Movie
 import com.example.moviestmdb.core.data.login.FirebaseAuthStateUserDataSource
 import com.google.firebase.auth.FirebaseAuth
@@ -60,19 +61,28 @@ class FireBaseManager @Inject constructor(
     }
 
     fun insertFavoriteMovies(movieId: Int): Flow<Boolean> {
-        val favoriteMovies = HashMap<String, Any>()
-        favoriteMovies[movieId.toString()] = true
+
+        val favoriteMovies = hashMapOf<String, Any>(
+            movieId.toString() to true
+        )
+
+        Log.d("TAG", "insertFavoriteMovies:")
+
+//        val favoriteMovies = mutableMapOf<String, Any>()
+//        favoriteMovies[movieId.toString()] = true
 
         return callbackFlow {
-            firebaseAuth.currentUser?.let { user ->
-                firebaseDatabase.reference
-                    .child("favorites")
-                    .child(user.uid)
-                    .updateChildren(favoriteMovies)
-                    .addOnCompleteListener {
-                        it.isSuccessful
-                    }
+            val uid = firebaseAuth.currentUser?.uid
+            val favoritesRef = firebaseDatabase.getReference("favorites/${uid}")
+            val task = favoritesRef.updateChildren(favoriteMovies)
+            val listener: (Boolean) -> Unit = { success ->
+                trySend(success)
             }
+
+            task.addOnCompleteListener {
+                listener(it.isSuccessful)
+            }
+
         }
     }
 

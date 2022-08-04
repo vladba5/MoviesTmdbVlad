@@ -7,10 +7,8 @@ import com.example.moviestmdb.core.util.AppCoroutineDispatchers
 import com.example.moviestmdb.core.util.ObservableLoadingCounter
 import com.example.moviestmdb.core.util.UiMessageManager
 import com.example.moviestmdb.core.util.collectStatus
-import com.example.moviestmdb.domain.interactors.UpdateNowPlayingMovies
-import com.example.moviestmdb.domain.interactors.UpdatePopularMovies
-import com.example.moviestmdb.domain.interactors.UpdateTopRatedMovies
-import com.example.moviestmdb.domain.interactors.UpdateUpcomingMovies
+import com.example.moviestmdb.domain.interactors.*
+import com.example.moviestmdb.domain.observers.ObserveGenres
 import com.example.moviestmdb.domain.observers.lobby_observers.ObserveNowPlayingMovies
 import com.example.moviestmdb.domain.observers.lobby_observers.ObservePopularMovies
 import com.example.moviestmdb.domain.observers.lobby_observers.ObserveTopRatedMovies
@@ -18,6 +16,7 @@ import com.example.moviestmdb.domain.observers.lobby_observers.ObserveUpcomingMo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,6 +28,7 @@ class MovieLobbyViewModel @Inject constructor(
     private val updateUpcomingMovies: UpdateUpcomingMovies,
     private val updateNowPlayingMovies: UpdateNowPlayingMovies,
     private val updateTopRatedMovies: UpdateTopRatedMovies,
+    private val updateGenres: UpdateGenres,
     observePopularMovies: ObservePopularMovies,
     observeUpcomingMovies: ObserveUpcomingMovies,
     observeNowPlayingMovies: ObserveNowPlayingMovies,
@@ -48,6 +48,10 @@ class MovieLobbyViewModel @Inject constructor(
         observeUpcomingMovies(ObserveUpcomingMovies.Params(1))
         observeNowPlayingMovies(ObserveNowPlayingMovies.Params(1))
         observeTopRatedMovies(ObserveTopRatedMovies.Params(1))
+
+        viewModelScope.launch(dispatchers.io) {
+            updateGenres(Unit).collect()
+        }
 
         refresh()
     }

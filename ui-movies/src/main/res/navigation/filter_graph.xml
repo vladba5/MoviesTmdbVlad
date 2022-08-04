@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/filter_graph"
+    app:startDestination="@id/filterMoviesFragment">
+
+    <fragment
+        android:id="@+id/filterMoviesFragment"
+        android:name="com.example.moviestmdb.ui_movies.fragments.fragments.discover_movies.DiscoverFragment"
+        android:label="FilterMoviesFragment" />
+</navigation>

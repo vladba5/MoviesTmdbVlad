@@ -21,6 +21,7 @@ import com.example.moviestmdb.domain.observers.details_observers.ObserveRecommen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -99,13 +100,13 @@ class MovieDetailsViewModel @Inject constructor(
 
     fun addMovie(movieId: Int){
         viewModelScope.launch(dispatchers.io) {
-            addFavoriteMovie(AddFavoriteMovie.Params(movieId))
+            addFavoriteMovie(AddFavoriteMovie.Params(movieId)).collect()
         }
     }
 
     fun removeMovie(movieId: Int){
         viewModelScope.launch(dispatchers.io) {
-            removeFavoriteMovie(RemoveFavoriteMovie.Params(movieId))
+            removeFavoriteMovie(RemoveFavoriteMovie.Params(movieId)).collect()
         }
     }
 

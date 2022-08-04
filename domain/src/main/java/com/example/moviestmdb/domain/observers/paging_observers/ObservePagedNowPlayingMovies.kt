@@ -13,6 +13,7 @@ import com.example.moviestmdb.domain.PagingInteractor
 import com.example.moviestmdb.domain.interactors.UpdateNowPlayingMovies
 import com.example.moviestmdb.domain.pagingSources.MoviesPagingSource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
@@ -32,6 +33,9 @@ class ObservePagedNowPlayingMovies @Inject constructor(
             },
             pagingSourceFactory = pagingSourceFactory
         ).flow
+//            .map {
+//
+//        }
     }
 
     private val pagingSourceFactory = InvalidatingPagingSourceFactory(::createPagingSource)

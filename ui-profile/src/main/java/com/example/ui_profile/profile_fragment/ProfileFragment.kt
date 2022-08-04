@@ -48,7 +48,7 @@ class ProfileFragment : Fragment() {
         }
 
         binding.profileUpdateBtn.setOnClickListener {
-            viewModel.updateData(123)
+            viewModel.insertFavoriteMovie(123)
         }
 
         binding.profileFavoriteBtn.setOnClickListener {

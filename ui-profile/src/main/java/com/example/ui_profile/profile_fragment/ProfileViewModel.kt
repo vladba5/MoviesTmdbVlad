@@ -19,7 +19,7 @@ class ProfileViewModel @Inject constructor(
         fireBaseManager.logout()
     }
 
-    fun updateData(movieId: Int){
+    fun insertFavoriteMovie(movieId: Int){
         fireBaseManager.insertFavoriteMovies(movieId)
     }
 

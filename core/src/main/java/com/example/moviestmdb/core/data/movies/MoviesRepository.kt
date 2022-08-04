@@ -1,6 +1,7 @@
 package com.example.moviestmdb.core.data.movies
 
 import com.example.moviestmdb.Cast
+import com.example.moviestmdb.Genre
 import com.example.moviestmdb.Movie
 import com.example.moviestmdb.core.data.movies.datasources.MoviesLocalDataSource
 import com.example.moviestmdb.core.data.movies.datasources.MoviesRemoteDataSource
@@ -97,5 +98,22 @@ class MoviesRepository @Inject constructor(
     fun observeMovieActors(movieId: Int) = local.detailStore.getActorsForMovie(movieId)
     //endregion
 
+    //region Genre
+    suspend fun getGenres() =
+        flow {
+            emit(remote.getGenres())
+        }
 
+    fun saveGenres(genres: List<Genre>) {
+        local.insertGenre(genres)
+    }
+
+    fun observeMovieGenre() = local.observeGenre()
+    //endregion
+
+
+    suspend fun getFilteredMovieList(page: Int ,request: Map<String,String>) =
+        flow{
+            emit(remote.getDiscover(page ,request))
+        }
 }

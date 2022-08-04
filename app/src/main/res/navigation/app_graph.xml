@@ -9,5 +9,6 @@
     <include app:graph="@navigation/people_graph" />
     <include app:graph="@navigation/login_graph" />
     <include app:graph="@navigation/profile_graph" />
+    <include app:graph="@navigation/filter_graph" />
 
 </navigation>
