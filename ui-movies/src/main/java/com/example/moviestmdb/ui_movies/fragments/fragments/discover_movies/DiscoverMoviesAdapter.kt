@@ -1,4 +1,4 @@
-package com.example.moviestmdb.ui_movies.fragments.fragments.now_playing_movies
+package com.example.moviestmdb.ui_movies.fragments.fragments.discover_movies
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,34 +8,33 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviestmdb.Genre
 import com.example.moviestmdb.ui_movies.databinding.ChipBinding
-import com.example.moviestmdb.ui_movies.databinding.ListItemNowPlayingMovieBinding
+import com.example.moviestmdb.ui_movies.databinding.DiscoverMoviesRowBinding
 import com.example.moviestmdb.ui_movies.fragments.view_holder.MovieAndGenre
 import com.example.moviestmdb.util.TmdbImageUrlProvider
 import com.google.android.material.chip.ChipGroup
 
-class NowPlayingMoviesAdapter(
+class DiscoverMoviesAdapter(
     private val tmdbImageUrlProvider: TmdbImageUrlProvider,
     private val onItemClickListener: (movieId: Int) -> Unit,
-) : PagingDataAdapter<MovieAndGenre, NowPlayingMovieViewHolder>(NowPlayingEntryComparator) {
+) : PagingDataAdapter<MovieAndGenre, DiscoverMovieViewHolder>(DiscoverEntryComparator) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NowPlayingMovieViewHolder {
-        val binding = ListItemNowPlayingMovieBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscoverMovieViewHolder {
+        val binding = DiscoverMoviesRowBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return NowPlayingMovieViewHolder(binding)
+        return DiscoverMovieViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: NowPlayingMovieViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DiscoverMovieViewHolder, position: Int) {
         val entry = getItem(position)
-        entry?.let { movie ->
-            holder.binding.nowPlayingTitle.text = movie.movie.title
-            holder.binding.nowPlayingSubtitle.text =
-                "${movie.movie.voteCount} votes • ${movie.movie.releaseDate}"
+        entry?.let { movieAndGenre ->
+            holder.binding.movieTitle.text = movieAndGenre.movie.title
+            holder.binding.movieInfo.text =
+                "${movieAndGenre.movie.voteCount} votes • ${movieAndGenre.movie.releaseDate}"
 
-            movie.movie.voteAverage?.let { voteAverage ->
-                holder.binding.nowPlayingPopularityBadge.progress = (voteAverage * 10).toInt()
+            movieAndGenre.movie.voteAverage?.let { voteAverage ->
+                holder.binding.popularityBadge.progress = (voteAverage * 10).toInt()
             }
-
 
             entry.movie.posterPath?.let { posterPath ->
                 Glide.with(holder.itemView)
@@ -45,12 +44,11 @@ class NowPlayingMoviesAdapter(
                             imageWidth = holder.itemView.width,
                         )
                     )
-                    .into(holder.binding.nowPlayingImage)
+                    .into(holder.binding.allMoviesRowImg)
             }
 
-
-            val filteredList = movie.genre.filter {
-                movie.movie.genreList.contains(it.id)
+            val filteredList = movieAndGenre.genre.filter {
+                movieAndGenre.movie.genreList.contains(it.id)
             }
             holder.binding.chipGroup.removeAllViews()
             addChips(holder.binding.chipGroup, filteredList)
@@ -60,6 +58,7 @@ class NowPlayingMoviesAdapter(
             }
         }
     }
+}
 
     fun addChips(chipGroup: ChipGroup, chips: List<Genre>) {
         chips.forEach { genre ->
@@ -70,24 +69,23 @@ class NowPlayingMoviesAdapter(
             chipGroup.addView(chip)
         }
     }
-}
 
-class NowPlayingMovieViewHolder(
-    internal val binding: ListItemNowPlayingMovieBinding
-) : RecyclerView.ViewHolder(binding.root)
+    class DiscoverMovieViewHolder(
+        internal val binding: DiscoverMoviesRowBinding
+    ) : RecyclerView.ViewHolder(binding.root)
 
-object NowPlayingEntryComparator : DiffUtil.ItemCallback<MovieAndGenre>() {
-    override fun areItemsTheSame(
-        oldItem: MovieAndGenre,
-        newItem: MovieAndGenre
-    ): Boolean {
-        return oldItem.movie.id == newItem.movie.id
-    }
+    object DiscoverEntryComparator : DiffUtil.ItemCallback<MovieAndGenre>() {
+        override fun areItemsTheSame(
+            oldItem: MovieAndGenre,
+            newItem: MovieAndGenre
+        ): Boolean {
+            return oldItem.movie.id == newItem.movie.id
+        }
 
-    override fun areContentsTheSame(
-        oldItem: MovieAndGenre,
-        newItem: MovieAndGenre
-    ): Boolean {
-        return oldItem == newItem
-    }
+        override fun areContentsTheSame(
+            oldItem: MovieAndGenre,
+            newItem: MovieAndGenre
+        ): Boolean {
+            return oldItem == newItem
+        }
 }

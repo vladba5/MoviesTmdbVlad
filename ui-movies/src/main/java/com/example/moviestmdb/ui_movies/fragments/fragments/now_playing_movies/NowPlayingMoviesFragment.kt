@@ -28,6 +28,7 @@ import com.example.moviestmdb.ui_movies.fragments.view_holder.MovieAndGenre
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 
 @AndroidEntryPoint
 class NowPlayingMoviesFragment : Fragment() {
@@ -58,13 +59,9 @@ class NowPlayingMoviesFragment : Fragment() {
         binding.toolbar.title = "Now Playing Movies"
 
         launchAndRepeatWithViewLifecycle {
-            viewModel.pagedList.collectLatest { pagingData ->
-//                val data = pagingData.map {
-//                    MovieAndGenre(it, genresList)
-//                }
-//                //pagingAdapter.submitData(pagingData)
-            }
-            }
+                val data = viewModel.pageList.first()
+                pagingAdapter.submitData(data)
+        }
 
 //            viewModel.state.collect{ viewState ->
 //                pagingAdapter.submitData(viewState.nowPlayingPagingData)
@@ -73,48 +70,46 @@ class NowPlayingMoviesFragment : Fragment() {
 //        }
 
 
-
         launchAndRepeatWithViewLifecycle {
             viewModel.filteredChips.collect { chips ->
                 val list = mutableListOf<Chip>()
                 chips.forEach { chip ->
                     val ch = createChip(chip)
-                    ch.setOnCheckedChangeListener { btn, ischecked ->
-                        viewModel.toggleFilter(btn.id, ischecked)
+                    ch.setOnCheckedChangeListener { compoundButton, isChecked ->
+                        viewModel.toggleFilter(compoundButton.id, isChecked)
                     }
                     list.add(ch)
                 }
 
                 binding.nowPlayingChipGroup.removeAllViews()
-                list.forEach {
-                    binding.nowPlayingChipGroup.addView(it)
+                list.forEach { chip ->
+                    binding.nowPlayingChipGroup.addView(chip)
                 }
             }
         }
     }
 
 
-
     private fun createChip(chip: Genre): Chip {
-        val chip = ChipBinding.inflate(LayoutInflater.from(context)).root
-        chip.id = chip.id
-        chip.text = chip.text
+        val chipView = ChipBinding.inflate(LayoutInflater.from(context)).root
+        chipView.id = chip.id
+        chipView.text = chip.name
 
-        return chip
+        return chipView
     }
 
 
-    fun addChips(chipGroup: ChipGroup, chips: List<Genre>) {
-        chips.forEach { genre ->
-            val chip = ChipBinding.inflate(LayoutInflater.from(chipGroup.context)).root
-            chip.id = genre.id
-            chip.text = genre.name
-            chip.setOnCheckedChangeListener { compountBtn, ischecked ->
-
-            }
-            chipGroup.addView(chip)
-        }
-    }
+//    fun addChips(chipGroup: ChipGroup, chips: List<Genre>) {
+//        chips.forEach { genre ->
+//            val chip = ChipBinding.inflate(LayoutInflater.from(chipGroup.context)).root
+//            chip.id = genre.id
+//            chip.text = genre.name
+//            chip.setOnCheckedChangeListener { compountBtn, ischecked ->
+//
+//            }
+//            chipGroup.addView(chip)
+//        }
+//    }
 
     private val movieClickListener: (Int) -> Unit = { movieId ->
         context?.showToast(movieId.toString())

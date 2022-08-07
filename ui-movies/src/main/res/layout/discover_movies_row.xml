@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="5dp" />
+        app:layout_constraintGuide_begin="10dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horizontal_movie_info_guide"
@@ -75,6 +75,7 @@
         android:lines="2"
         android:text="movie_name"
         android:textColor="@color/black"
+        android:textAppearance="?textAppearanceHeadline5"
         app:layout_constraintBottom_toTopOf="@+id/horizontal_movie_info_guide"
         app:layout_constraintEnd_toStartOf="@+id/vertical_right_name_guide"
         app:layout_constraintStart_toStartOf="@+id/vertical_left_name_guide"
@@ -84,10 +85,11 @@
         android:id="@+id/movie_info"
         style="@style/Widget.Tmdb.TextButton"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:lines="1"
         android:text="movie_info"
         android:textColor="@color/black"
+        android:textAppearance="?textAppearanceListItem"
         app:layout_constraintEnd_toStartOf="@+id/vertical_right_name_guide"
         app:layout_constraintStart_toStartOf="@+id/vertical_left_name_guide"
         app:layout_constraintTop_toTopOf="@+id/horizontal_movie_info_guide" />
@@ -95,7 +97,8 @@
     <HorizontalScrollView
         android:id="@+id/chip_horizontal_view"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/vertical_right_name_guide"
         app:layout_constraintStart_toStartOf="@+id/vertical_left_name_guide"
         app:layout_constraintTop_toBottomOf="@+id/movie_info">
@@ -103,7 +106,7 @@
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_group"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </HorizontalScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

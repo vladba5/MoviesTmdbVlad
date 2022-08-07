@@ -5,13 +5,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.*
 import com.example.moviestmdb.Movie
 import com.example.moviestmdb.core.util.AppCoroutineDispatchers
-import com.example.moviestmdb.core.util.ObservableLoadingCounter
-import com.example.moviestmdb.core.util.UiMessage
-import com.example.moviestmdb.core.util.UiMessageManager
 import com.example.moviestmdb.domain.interactors.UpdateGenres
 import com.example.moviestmdb.domain.observers.ObserveGenres
 import com.example.moviestmdb.domain.observers.paging_observers.ObservePagedNowPlayingMovies
-import com.example.moviestmdb.domain.observers.paging_observers.ObservePagedPopularMovies
 import com.example.moviestmdb.ui_movies.fragments.view_holder.MovieAndGenre
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -36,6 +32,7 @@ class NowPlayingMoviesViewModel @Inject constructor(
         Pair(selectedChips, genresList)
     }
 
+    //ronel - chips movie list not changing
     val pageList: Flow<PagingData<MovieAndGenre>> =
         filteresAndGenresCombo.flatMapLatest { pair ->
             pagingInteractor.flow
@@ -75,6 +72,7 @@ class NowPlayingMoviesViewModel @Inject constructor(
             }
 
         if (changed) {
+//            _selectedChips.value = set
             _selectedChips.tryEmit(set)
         }
     }

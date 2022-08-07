@@ -48,7 +48,7 @@ interface MovieService {
     fun getGenre(
     ) : Call<GenreResponse>
 
-    @GET("/discover/movie")
+    @GET("discover/movie")
     fun getDiscover(
         @Query("page") page: Int,
         @QueryMap queries : Map<String, String>

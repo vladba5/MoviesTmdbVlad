@@ -1,7 +1,9 @@
 package com.example.moviestmdb.ui_movies.fragments.fragments.filter_movies
 
 import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,10 +18,13 @@ import com.example.moviestmdb.core.extensions.*
 import com.example.moviestmdb.ui_movies.R
 import com.example.moviestmdb.ui_movies.databinding.BottomSheetFilterBinding
 import com.example.moviestmdb.ui_movies.databinding.ChipBinding
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.ChipGroup
 import dagger.hilt.android.AndroidEntryPoint
 import org.threeten.bp.LocalDate
+import org.threeten.bp.format.DateTimeFormatter
 import java.util.*
 
 
@@ -35,6 +40,11 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
     val currentlySelectedChips : MutableList<Int> = mutableListOf()
 
 
+    override fun onDismiss(dialog: DialogInterface) {
+        Log.d("TAG", "onDismiss: ")
+        super.onDismiss(dialog)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,7 +56,6 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initVars()
     }
 
@@ -73,7 +82,7 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
 //        }
     }
 
-    fun addChips(chipGroup: ChipGroup, chips: List<Genre>) {
+    private fun addChips(chipGroup: ChipGroup, chips: List<Genre>) {
         chips.forEach { genre ->
             val chip = ChipBinding.inflate(LayoutInflater.from(chipGroup.context)).root
             chip.id = genre.id
@@ -132,13 +141,17 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
                 addChips(binding.bottomSheetChipGroup, genres)
             }
         }
-
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
         binding.datePickerFrom.setOnClickListener {
-            datePicker(binding.fromTxt, 0)
+            val calendar = getCalendarValues(0)
+            datePicker(c, binding.datePickerFrom, 0)
         }
 
         binding.datePickerTo.setOnClickListener {
-            datePicker(binding.toTxt, 1)
+            datePicker(c, binding.datePickerTo, 1)
         }
 
         val items = listOf(
@@ -160,7 +173,7 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
 //    val date = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(requireContext())
 //        .format(LocalDate.of(year, month,day))
 
-    fun datePicker(textView: TextView, fromTo: Int) {
+    fun datePicker(calendar: Calendar,textView: TextView, fromTo: Int) {
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
@@ -184,5 +197,29 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
         datePickerDialog.show()
 
     }
+
+    fun getCalendarValues(fromTo: Int) {
+        val cal = Calendar.getInstance()
+        if(fromTo == 0 && selectedFilter.contains("release_date.gte")){
+            val strDate = selectedFilter["release_date.gte"]?.replace("-", "")
+            val date = LocalDate.parse(strDate, DateTimeFormatter.BASIC_ISO_DATE)
+            Log.d("TAG", "getCalendarValues: $date")
+        //val chosenDate: LocalDate = LocalDate.of(a!![0], a[1], a[2])
+        }else if(fromTo == 1 && selectedFilter.contains("release_date.lte")){
+            val date = selectedFilter["release_date.lte"]
+        }
+    }
+
+//    fun loadPageParams(valuesMap : Map<String, String>){
+//            fromDate =
+//            toDate =
+//            chosenGenres =
+//            userMinScore =
+//            userMaxScore =
+//            userVotes =
+//            userMinRuntime =
+//            userMaxRuntime =
+//            language =
+//    }
 
 }

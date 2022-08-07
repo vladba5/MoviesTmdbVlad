@@ -80,7 +80,7 @@ class MovieDetailsFragment : Fragment() {
     }
 
     private fun loadBindingData(
-        binding: FragmentMovieDetailsBinding,
+         binding: FragmentMovieDetailsBinding,
         detailsUiState: DetailsUiState
     ) {
         binding.toolbar.title = "Detail Screen"
