@@ -17,6 +17,7 @@ class DiscoverPagingSource @Inject constructor(
     val dispatchers: AppCoroutineDispatchers,
     val paramMap : Map<String, String>
 ) : PagingSource<Int, Movie>() {
+
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         return try {
             val pageNumber = params.key ?: 1

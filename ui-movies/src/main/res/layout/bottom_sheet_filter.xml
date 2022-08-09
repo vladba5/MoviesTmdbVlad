@@ -117,6 +117,7 @@
             android:value="5"
             android:valueFrom="0"
             android:valueTo="10"
+            app:values="@array/user_score_range"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_score_txt" />
@@ -188,7 +189,7 @@
             android:stepSize="10"
             android:valueFrom="0"
             android:valueTo="400"
-            app:values="@array/score_runtime_values"
+            app:values="@array/runtime_range"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/runtime_txt" />
