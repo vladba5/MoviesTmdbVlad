@@ -31,12 +31,11 @@ import javax.inject.Inject
 class DiscoverFragment : Fragment() {
     lateinit var binding: FragmentDiscoverMoviesBinding
     private val viewModel: DiscoverViewModel by viewModels()
-    lateinit var discoverAdapter: DiscoverMoviesAdapter
+    private lateinit var discoverAdapter: DiscoverMoviesAdapter
+    private var bottomTag: String = "FilterBottomSheet"
 
     @Inject
     lateinit var tmdbImageManager: TmdbImageManager
-
-    var bottomTag: String = "FilterBottomSheet"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,18 +54,11 @@ class DiscoverFragment : Fragment() {
         initVars()
 
         launchAndRepeatWithViewLifecycle {
-            viewModel.pagedList.collectLatest{ pagingData ->
+            viewModel.pagedList.collectLatest { pagingData ->
                 val data = pagingData.map {
-                    MovieAndGenre(it, viewModel.genres.first())
+                    MovieAndGenre(it, viewModel.genres.value)
                 }
                 discoverAdapter.submitData(data)
-            }
-        }
-
-
-        launchAndRepeatWithViewLifecycle {
-            viewModel.selectedFilters.collect{
-
             }
         }
     }
@@ -85,17 +77,20 @@ class DiscoverFragment : Fragment() {
     }
 
     private fun showFilterBottomSheet() {
-        val callback: (response: FilterParams) -> Unit = { filterData ->
-            Timber.i("$filterData")
+        val filterBottomSheet = FilterBottomSheet(viewModel.requireFilters()) { filterData ->
             viewModel.replaceFilters(filterData)
         }
-
-        val filterBottomSheet = FilterBottomSheet()
-        filterBottomSheet.listener = callback
         filterBottomSheet.show(childFragmentManager, bottomTag)
+
+//        it.show(childFragmentManager, bottomTag)
+        //filterBottomSheet.listener = callback
     }
 
-    fun initDiscoverAdapter() {
+//    private val callback: (response: FilterParams) -> Unit = { filterData ->
+//        viewModel.replaceFilters(filterData)
+//    }
+
+    private fun initDiscoverAdapter() {
         discoverAdapter =
             DiscoverMoviesAdapter(
                 tmdbImageManager.getLatestImageProvider(),
@@ -106,7 +101,9 @@ class DiscoverFragment : Fragment() {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = discoverAdapter
 
-            val spacing = resources.getDimension(com.example.moviestmdb.core_ui.R.dimen.spacing_normal).toInt()
+            val spacing =
+                resources.getDimension(com.example.moviestmdb.core_ui.R.dimen.spacing_normal)
+                    .toInt()
             val decoration = SpaceItemDecoration(
                 spacing, -spacing
             )
