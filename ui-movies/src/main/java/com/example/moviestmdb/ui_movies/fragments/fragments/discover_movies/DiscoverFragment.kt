@@ -18,13 +18,9 @@ import com.example.moviestmdb.core_ui.util.showToast
 import com.example.moviestmdb.ui_movies.R
 import com.example.moviestmdb.ui_movies.databinding.FragmentDiscoverMoviesBinding
 import com.example.moviestmdb.ui_movies.fragments.fragments.filter_movies.FilterBottomSheet
-import com.example.moviestmdb.ui_movies.fragments.fragments.filter_movies.FilterParams
-import com.example.moviestmdb.ui_movies.fragments.view_holder.MovieAndGenre
+import com.example.moviestmdb.ui_movies.fragments.model.MovieAndGenre
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.first
-import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
