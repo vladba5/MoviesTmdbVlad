@@ -76,6 +76,7 @@ class CoreLibraryPlugin : Plugin<Project> {
             "implementation"(Libs.Coroutines.core)
 
             "api"(Libs.timber)
+//            "api"(Libs.pallete)
 
             "implementation"(Libs.AndroidX.Lifecycle.runtime)
             "implementation"(Libs.AndroidX.Fragment.fragmentKtx)
