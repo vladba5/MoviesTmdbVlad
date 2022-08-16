@@ -4,7 +4,7 @@ object Libs {
     const val androidGradlePlugin = "com.android.tools.build:gradle:7.2.1"
     const val jdkDesugar = "com.android.tools:desugar_jdk_libs:1.1.5"
     const val timber = "com.jakewharton.timber:timber:4.7.1"
-    const val pallete = "com.android.support:palette-v7:28.0.0"
+    //const val pallete = "com.android.support:palette-v7:28.0.0"
 
 
     object Kotlin {
@@ -36,10 +36,10 @@ object Libs {
         const val testing = "com.google.dagger:hilt-android-testing:$version"
     }
 
-//    object Pallete {
-//        private const val version = "28.0.0"
-//        const val pallete = "com.android.support:palette-v7:${version}"
-//    }
+    object Pallete {
+        private const val version = "28.0.0"
+        const val pallete = "com.android.support:palette-v7:${version}"
+    }
 
     object AndroidX {
         const val appcompat = "androidx.appcompat:appcompat:1.4.1"
@@ -103,6 +103,25 @@ object Libs {
             const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
             const val process = "androidx.lifecycle:lifecycle-process:$version"
             const val viewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:$version"
+        }
+
+        object Compose {
+            private const val version = "1.2.1"
+
+            const val composeUI = "androidx.compose.ui:ui:${version}"
+            // Tooling support (Previews, etc.)
+            const val composeUITooling = "androidx.compose.ui:ui-tooling${version}"
+            // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
+            const val composeFoundation ="androidx.compose.foundation:foundation:${version}"
+            // Material Design
+            const val composeMaterial ="androidx.compose.material:material:${version}"
+            // Material design icons
+            const val composeMaterialIcons = "androidx.compose.material:material-icons-core:${version}"
+            const val composeMaterialIconsExtended = "androidx.compose.material:material-icons-extended:${version}"
+            // Integration with observables
+            const val composeLivedata = "androidx.compose.runtime:runtime-livedata:${version}"
+            const val composeRxJava = "androidx.compose.runtime:runtime-rxjava2:${version}"
+
         }
     }
 
