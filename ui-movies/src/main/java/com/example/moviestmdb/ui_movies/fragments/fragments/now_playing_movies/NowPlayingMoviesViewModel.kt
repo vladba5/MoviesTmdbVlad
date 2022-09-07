@@ -23,7 +23,7 @@ class NowPlayingMoviesViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _selectedChips = MutableStateFlow<Set<Int>>(emptySet())
-    val selectedChips = _selectedChips.asStateFlow()
+    private val selectedChips = _selectedChips.asStateFlow()
 
     private val filteresAndGenresCombo = combine(
         selectedChips,
@@ -32,7 +32,6 @@ class NowPlayingMoviesViewModel @Inject constructor(
         Pair(selectedChips, genresList)
     }
 
-    //ronel - chips movie list not changing
     val pageList: Flow<PagingData<MovieAndGenre>> =
         filteresAndGenresCombo.flatMapLatest { pair ->
             pagingInteractor.flow
@@ -80,8 +79,8 @@ class NowPlayingMoviesViewModel @Inject constructor(
 //    private val uiMessageManager = UiMessageManager()
 //    private val popularLoadingState = ObservableLoadingCounter()
 
-    val pagedList: Flow<PagingData<Movie>> =
-        pagingInteractor.flow.cachedIn(viewModelScope)
+//    val pagedList: Flow<PagingData<Movie>> =
+//        pagingInteractor.flow.cachedIn(viewModelScope)
 
 
     private val PAGING_CONFIG = PagingConfig(
@@ -124,11 +123,4 @@ class NowPlayingMoviesViewModel @Inject constructor(
             updateGenres(Unit).collect()
         }
     }
-
-//    fun clearMessage(id: Long) {
-//        viewModelScope.launch {
-//            uiMessageManager.clearMessage(id)
-//        }
-//    }
-
 }

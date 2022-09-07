@@ -102,7 +102,9 @@
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_group"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.Tmdb.Chip.Filter"
+            />
     </HorizontalScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

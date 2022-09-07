@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +24,7 @@ import javax.inject.Inject
 import com.example.moviestmdb.core.constants.Constants.MOVIE_ID
 import com.example.moviestmdb.ui_movies.databinding.ChipBinding
 import com.google.android.material.chip.Chip
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 
 @AndroidEntryPoint
@@ -53,16 +55,16 @@ class NowPlayingMoviesFragment : Fragment() {
         setupWithNavController(binding.toolbar, findNavController())
         binding.toolbar.title = "Now Playing Movies"
 
-        launchAndRepeatWithViewLifecycle {
-                val data = viewModel.pageList.first()
-                pagingAdapter.submitData(data)
-        }
-
-//            viewModel.state.collect{ viewState ->
-//                pagingAdapter.submitData(viewState.nowPlayingPagingData)
-//                addChips(binding.nowPlayingChipGroup, viewState.genreList)
-//            }
+//        launchAndRepeatWithViewLifecycle {
+//                val data = viewModel.pageList.first()
+//                pagingAdapter.submitData(data)
 //        }
+
+        launchAndRepeatWithViewLifecycle {
+            viewModel.pageList.collectLatest { pagingData ->
+                pagingAdapter.submitData(pagingData)
+            }
+        }
 
 
         launchAndRepeatWithViewLifecycle {

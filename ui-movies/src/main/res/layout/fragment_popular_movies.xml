@@ -34,7 +34,8 @@
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/popular_chip_group"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.Tmdb.Chip.Filter" />
 
     </HorizontalScrollView>
 
