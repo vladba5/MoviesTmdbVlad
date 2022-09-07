@@ -69,12 +69,10 @@
 
     <TextView
         android:id="@+id/movie_title"
-        style="@style/Widget.Tmdb.TextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:lines="2"
         android:text="movie_name"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/horizontal_movie_info_guide"
         app:layout_constraintEnd_toStartOf="@+id/vertical_right_name_guide"
         app:layout_constraintStart_toStartOf="@+id/vertical_left_name_guide"
@@ -82,12 +80,10 @@
 
     <TextView
         android:id="@+id/movie_info"
-        style="@style/Widget.Tmdb.TextButton"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:lines="1"
         android:text="movie_info"
-        android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/vertical_right_name_guide"
         app:layout_constraintStart_toStartOf="@+id/vertical_left_name_guide"
         app:layout_constraintTop_toTopOf="@+id/horizontal_movie_info_guide" />

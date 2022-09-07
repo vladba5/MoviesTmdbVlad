@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-
-    <attr name="textAppearanceTitleVlad" format="reference" />
-    <attr name="textAppearanceSubTitle" format="reference" />
-    <attr name="textAppearanceDetails" format="reference" />
-
 
     <!--A variant of primarySurface which corresponds to colorPrimaryVariant in light theme-->
     <!--and colorSurface in dark theme-->

@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                 when (connected) {
                     true -> navController.popBackStack(id.login_graph, false)
                     false -> navController.navigate(id.login_graph)
+                    else -> {}
                 }
             }
         }

@@ -1,56 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    androidx.appcompat.widget.Toolbar
-    <style name="Widget.Tmdb.AppBar" parent="@style/Widget.AppCompat.Toolbar">
-<!--        <item name="android:textSize">72sp</item>-->
+
+    <style name="Widget.Tmdb.NavigationView" parent="Widget.MaterialComponents.NavigationView">
+        <!--Remove any scrim insets applied by NavigationView for system bars-->
+        <item name="insetForeground">@android:color/transparent</item>
+        <!--Set the background color of NavigationView-->
+        <item name="android:background">@android:color/transparent</item>
+        <item name="elevation">0dp</item>
+        <item name="itemTextAppearance">?attr/textAppearanceBody2</item>
+        <item name="itemTextColor">@color/color_on_surface_emphasis_medium</item>
+        <item name="itemIconTint">@color/color_on_surface_emphasis_medium</item>
     </style>
 
-    <style name="Widget.Tmdb.BottomAppBar.PrimarySurface" parent="@style/Widget.MaterialComponents.BottomAppBar.PrimarySurface">
-        <item name="backgroundTint">@color/tmdb_green_300</item>
+    <style name="Widget.Tmdb.AppBar" parent="@style/Widget.MaterialComponents.AppBarLayout.Surface">
+        <item name="android:elevation">8dp</item>
     </style>
 
-    <style name="Widget.Tmdb.TextButton" parent="@style/Widget.MaterialComponents.Button.TextButton">
-        <item name="android:layout_margin">0dp</item>
-        <item name="android:padding">0dp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:gravity">left</item>
+    <!-- Snackbar   -->
+    <style name="Widget.Tmdb.Snackbar" parent="Widget.MaterialComponents.Snackbar">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Tmdb.Snackbar</item>
+        <item name="actionTextColorAlpha">1</item>
     </style>
 
-    <style name="Widget.Tmdb.TextView" parent="@style/Widget.AppCompat.TextView">
-        <item name="colorPrimary">@color/tmdb_red_200</item>
-        <item name="colorSecondary">@color/tmdb_red_200</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:gravity">left</item>
+    <style name="Widget.Tmdb.SnackbarButton" parent="Widget.MaterialComponents.Button.TextButton.Snackbar">
+        <item name="android:textColor">?colorSecondary</item>
     </style>
 
-    <style name="ThemeOverlay.Tmdb.Text.Grey" parent="">
-        <item name="colorOnSurface">@color/tmdb_red_200</item>
-    </style>
+    <style name="Widget.Tmdb" parent="@android:style/Widget.Material" />
 
-<!--    <style name="ThemeOverlay.Tmdb.Text.Black" parent="">-->
-<!--        <item name="colorPrimary">@color/tmdb_black_800</item>-->
-<!--        <item name="colorSecondary">@color/tmdb_black_900</item>-->
-<!--    </style>-->
+    <style name="Widget.Tmdb.Settings" />
 
-    <!--    <style name="Widget.Tmdb.Text" parent="@style/TextAppearance.MaterialComponents.Headline3">-->
-    <!--        <item name="android:layout_margin">0dp</item>-->
-    <!--        <item name="android:padding">0dp</item>-->
-    <!--        <item name="android:textStyle">bold</item>-->
-    <!--        <item name="android:gravity">left</item>-->
-    <!--    </style>-->
-
-    <style name="Widget.Tmdb.NavigationView" parent="@style/Widget.MaterialComponents.BottomNavigationView">
-
-    </style>
-
-    <style name="Widget.Tmdb.Snackbar" parent="@style/Widget.MaterialComponents.Snackbar">
-        <item name="snackbarTextViewStyle">@style/TextAppearance.Tmdb.Body1</item>
-<!--        <item name="android:textColor">?attr/colorPrimary</item>-->
-    </style>
-
-
-    <style name="Widget.Tmdb.SnackbarButton" parent="Widget.MaterialComponents.Snackbar">
-
+    <style name="Widget.Tmdb.Settings.Button">
+        <item name="android:background">?selectableItemBackground</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:minHeight">?listPreferredItemHeightSmall</item>
+        <item name="android:paddingBottom">@dimen/spacing_normal</item>
+        <item name="android:paddingEnd">?listPreferredItemPaddingEnd</item>
+        <item name="android:paddingStart">?listPreferredItemPaddingStart</item>
+        <item name="android:paddingTop">@dimen/spacing_normal</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textAppearance">?textAppearanceBody2</item>
     </style>
 
 </resources>

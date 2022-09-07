@@ -72,15 +72,34 @@ class ApplicationPlugin : Plugin<Project> {
             "implementation"(Libs.AndroidX.Lifecycle.runtime)
             "implementation"(Libs.AndroidX.Lifecycle.process)
             "implementation"(Libs.AndroidX.Lifecycle.viewmodel)
-            "implementation"(Libs.AndroidX.Lifecycle.viewModelCompose)
-            "implementation"(Libs.AndroidX.Compose.composeUI)
-//            "implementation"(Libs.AndroidX.Compose.composeLivedata)
-//            "implementation"(Libs.AndroidX.Compose.composeRxJava)
-//            "implementation"(Libs.AndroidX.Compose.composeMaterialIcons)
-//            "implementation"(Libs.AndroidX.Compose.composeMaterialIconsExtended)
-//            "implementation"(Libs.AndroidX.Compose.composeMaterial)
-//            "implementation"(Libs.AndroidX.Compose.composeUITooling)
-//            "implementation"(Libs.AndroidX.Compose.composeFoundation)
+
+
+//            "implementation"(Libs.Compose.viewModelCompose)
+//            "implementation"(Libs.Compose.activityCompose)
+//            "implementation"(Libs.Compose.foundation)
+//            "implementation"(Libs.Compose.layout)
+//            "implementation"(Libs.Compose.material)
+//            "implementation"(Libs.Compose.materialIconsExtended)
+//            "implementation"(Libs.Compose.runtime)
+//            "implementation"(Libs.Compose.runtimeLivedata)
+//            "implementation"(Libs.Compose.tooling)
+//            "implementation"(Libs.Compose.runtimeLivedata)
+//            "implementation"(Libs.Compose.tooling)
+//            "implementation"(Libs.Compose.uiUtil)
+//            "implementation"(Libs.Compose.viewBinding)
+//            "implementation"(Libs.Compose.manifest)
+//            "implementation"(Libs.Compose.preview)
+//            "implementation"(Libs.Compose.themeAdapter)
+//            "implementation"(Libs.Compose.accompanistTheme)
+////            "implementation"(Libs.Compose.paging)
+////            "implementation"(Libs.Compose.pagingRuntime)
+//            "implementation"(Libs.Compose.Material3.material3)
+//
+//            "debugImplementation"(Libs.Compose.test)
+//            "debugImplementation"(Libs.Compose.uiTest)
+//            "debugImplementation"(Libs.Compose.uiTestManifest)
+
+
 
             "kapt"(Libs.AndroidX.Lifecycle.compiler)
 

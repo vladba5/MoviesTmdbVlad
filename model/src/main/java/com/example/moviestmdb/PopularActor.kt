@@ -15,4 +15,23 @@ data class PopularActor(
     val popularity: Double,
     @SerializedName("profile_path")
     val profile_path: String
-)
+) {
+
+    fun getTitles() : String {
+        val titleList = mutableListOf<String>()
+        known_for.forEach{
+            titleList.add(it.name)
+        }
+        return titleList.joinToString(", ")
+    }
+
+    val knownForTitles: String
+        get() = "${
+            StringBuilder().apply {
+                known_for.forEach {
+                    append(it.name)
+                    append(", ")
+                }
+            }
+        }".dropLast(1)
+}

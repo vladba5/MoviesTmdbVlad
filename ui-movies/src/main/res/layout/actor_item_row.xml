@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontal_guide_image"
         tools:text="Tom Cruise"
-        android:textAppearance="?textAppearanceHeadline5"
+        android:textAppearance="?textAppearanceListItem"
         android:lines="1" />
 
     <TextView
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:lines="2"
-        android:textAppearance="?textAppearanceHeadline6"
+        android:textAppearance="?textAppearanceListItemSecondary"
         android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -48,7 +48,14 @@ class UiLibraryPlugin : Plugin<Project> {
                 targetCompatibility = AndroidConfig.targetCompatibility
             }
 
+//            composeOptions{
+//                buildFeatures.compose = true
+//                composeOptions.kotlinCompilerExtensionVersion = Libs.Compose.kotlinCompilerExtensionVersion
+//            }
+
             viewBinding.isEnabled = true
+            composeOptions.kotlinCompilerExtensionVersion = Libs.Compose.kotlinCompilerExtensionVersion
+            buildFeatures.compose = true
 
             packagingOptions {
                 resources {
@@ -78,6 +85,28 @@ class UiLibraryPlugin : Plugin<Project> {
             "implementation"(Libs.AndroidX.Navigation.uiKtx)
 
             //"implementation"(Libs.Pallete.pallete)
+            // Compose
+            "implementation"(Libs.Compose.layout)
+            "implementation"(Libs.Compose.material)
+            "implementation"(Libs.Compose.Material3.material3)
+            "implementation"(Libs.Compose.activityCompose)
+            "implementation"(Libs.Compose.viewModelCompose)
+            "implementation"(Libs.Compose.materialIconsExtended)
+            "implementation"(Libs.Compose.tooling)
+            "implementation"(Libs.Compose.uiUtil)
+            "implementation"(Libs.Compose.runtime)
+            "implementation"(Libs.Compose.runtimeLivedata)
+            "implementation"(Libs.Compose.viewBinding)
+            "implementation"(Libs.Compose.themeAdapter)
+            "implementation"(Libs.Compose.accompanistTheme)
+            "implementation"(Libs.Compose.preview)
+            "implementation"(Libs.Compose.paging)
+            "implementation"(Libs.Compose.coil)
+
+            "debugImplementation"(Libs.Compose.uiTestManifest)
+            "androidTestImplementation"(Libs.Compose.test)
+            "androidTestImplementation"(Libs.Compose.uiTest)
+            "androidTestImplementation"(Libs.Compose.manifest)
         }
     }
 }

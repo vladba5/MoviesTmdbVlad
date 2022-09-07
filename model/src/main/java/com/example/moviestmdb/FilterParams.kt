@@ -79,6 +79,7 @@ data class FilterParams(
 //            TO_DATE -> {
 //                this.dateTo = ""
 //            }
+            else -> {}
         }
     }
 
@@ -113,6 +114,7 @@ data class FilterParams(
             TO_DATE -> {
                 this.dateTo = (value as? String) ?: ""
             }
+            else -> {}
         }
     }
 

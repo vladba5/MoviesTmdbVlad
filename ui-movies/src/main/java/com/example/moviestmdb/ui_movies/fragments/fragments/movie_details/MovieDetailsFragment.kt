@@ -60,7 +60,7 @@ class MovieDetailsFragment : Fragment() {
         launchAndRepeatWithViewLifecycle {
             viewModel.detailState.collect { uiState ->
 
-               // binding.swipeRefresh.isRefreshing = uiState.refreshing
+                binding.swipeRefresh.isRefreshing = uiState.refreshing
 
                 uiState.message?.let { message ->
                     view.showSnackBarWithAction(

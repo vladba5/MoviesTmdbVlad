@@ -56,20 +56,20 @@ class MovieDetailsViewModel @Inject constructor(
     val detailState: StateFlow<DetailsUiState> = combine(
         recommendedLoadingState.observable,
         actorsLoadingState.observable,
-        observerIsFavorite.flow,
+//        observerIsFavorite.flow,
         observeRecommendedMovies.flow,
         observeMovieActors.flow,
         observeMovieById.flow,
         uiMessageManager.message
     ) { recommendedRefreshing, actorsRefreshing
-        ,isFavorite
+//        ,isFavorite
         ,recommendedMovies,
         movieActors, movie, message ->
         DetailsUiState(
             actorsRefreshing = actorsRefreshing,
             recommendedRefreshing = recommendedRefreshing,
             recommendedMovies = recommendedMovies,
-            isFavorite = isFavorite,
+//            isFavorite = isFavorite,
             actorList = movieActors,
             movie = movie,
             message = message
