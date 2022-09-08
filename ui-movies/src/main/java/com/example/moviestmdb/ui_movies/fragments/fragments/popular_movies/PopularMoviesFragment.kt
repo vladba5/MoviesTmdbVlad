@@ -36,11 +36,9 @@ import kotlinx.coroutines.withContext
 @AndroidEntryPoint
 class PopularMoviesFragment: Fragment() {
 
-    lateinit var binding: FragmentPopularMoviesBinding
     private val viewModel: PopularMoviesViewModel by viewModels()
-
+    lateinit var binding: FragmentPopularMoviesBinding
     lateinit var pagingAdapter: PopularMoviesAdapter
-    private lateinit var chipGroup: ViewGroup
 
     @Inject
     lateinit var tmdbImageManager: TmdbImageManager
@@ -62,51 +60,37 @@ class PopularMoviesFragment: Fragment() {
         setupWithNavController(binding.toolbar, findNavController())
         binding.toolbar.title = "Popular Movies"
 
-            launchAndRepeatWithViewLifecycle {
-                viewModel.pagedList.collectLatest { pagingData ->
-                    pagingAdapter.submitData(pagingData)
+        launchAndRepeatWithViewLifecycle {
+            viewModel.pageList.collectLatest { pagingData ->
+                pagingAdapter.submitData(pagingData)
+            }
+        }
+
+        launchAndRepeatWithViewLifecycle {
+            viewModel.filteredChips.collect { chips ->
+                val list = mutableListOf<Chip>()
+                chips.forEach { chip ->
+                    val ch = createChip(chip)
+                    ch.setOnCheckedChangeListener { compoundButton, isChecked ->
+                        viewModel.toggleFilter(compoundButton.id, isChecked)
+                    }
+                    list.add(ch)
                 }
-//
-//
-//
-//            viewModel.state.collectLatest{ uiState ->
-//                uiState.message?.let { message ->
-//                    view.showSnackBarWithAction(
-//                        message = message.message,
-//                        actionMessage = "Dismiss",
-//                        function = this@PopularMoviesFragment::clearMessage
-//                    )
-//                }
-//
-//                loadBindingData(binding, uiState)
-//                pagingAdapter.submitData(uiState.popularPagingData)
-//            }
+
+                binding.popularChipGroup.removeAllViews()
+                list.forEach { chip ->
+                    binding.popularChipGroup.addView(chip)
+                }
+            }
         }
     }
 
-    fun addChips(chipGroup : ChipGroup, chips: List<Genre>){
-        chips.forEach { genre ->
-//            val chip = Chip(chipGroup.context)
-//            chip.text = genre.name
-//            chip.setChipBackgroundColorResource(com.example.moviestmdb.core_ui.R.color.purple_200)
-//            chip.setOnClickListener {}
-            val chip = ChipBinding.inflate(LayoutInflater.from(context)).root
-            chip.id = genre.id
-            chip.text = genre.name
-            chipGroup.addView(chip)
-        }
-    }
+    private fun createChip(chip: Genre): Chip {
+        val chipView = ChipBinding.inflate(LayoutInflater.from(context)).root
+        chipView.id = chip.id
+        chipView.text = chip.name
 
-    private fun loadBindingData(
-        binding: FragmentPopularMoviesBinding,
-        uiState: PopularViewState)
-    {
-        binding.toolbar.title = "Popular Movies"
-        addChips(binding.popularChipGroup, uiState.genreList)
-    }
-
-    private fun clearMessage(message: UiMessage) {
-        viewModel.clearMessage(message.id)
+        return chipView
     }
 
     private val movieClickListener : (Int) -> Unit = { movieId ->

@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.moviestmdb.Genre
 import com.example.moviestmdb.core.TmdbImageManager
 import com.example.moviestmdb.core.constants.Constants
 import com.example.moviestmdb.core.extensions.launchAndRepeatWithViewLifecycle
@@ -17,7 +18,9 @@ import com.example.moviestmdb.core_ui.R.dimen
 import com.example.moviestmdb.core_ui.util.SpaceItemDecoration
 import com.example.moviestmdb.core_ui.util.showToast
 import com.example.moviestmdb.ui_movies.R
+import com.example.moviestmdb.ui_movies.databinding.ChipBinding
 import com.example.moviestmdb.ui_movies.databinding.FragmentUpcomingMoviesBinding
+import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
@@ -51,10 +54,36 @@ class UpcomingMoviesFragment: Fragment() {
         binding.toolbar.title = "Upcoming Movies"
 
         launchAndRepeatWithViewLifecycle {
-            viewModel.pagedList.collectLatest { pagingData ->
+            viewModel.pageList.collectLatest { pagingData ->
                 pagingAdapter.submitData(pagingData)
             }
         }
+
+        launchAndRepeatWithViewLifecycle {
+            viewModel.filteredChips.collect { chips ->
+                val list = mutableListOf<Chip>()
+                chips.forEach { chip ->
+                    val ch = createChip(chip)
+                    ch.setOnCheckedChangeListener { compoundButton, isChecked ->
+                        viewModel.toggleFilter(compoundButton.id, isChecked)
+                    }
+                    list.add(ch)
+                }
+
+                binding.upcomingChipGroup.removeAllViews()
+                list.forEach { chip ->
+                    binding.upcomingChipGroup.addView(chip)
+                }
+            }
+        }
+    }
+
+    private fun createChip(chip: Genre): Chip {
+        val chipView = ChipBinding.inflate(LayoutInflater.from(context)).root
+        chipView.id = chip.id
+        chipView.text = chip.name
+
+        return chipView
     }
 
     private val movieClickListener : (Int) -> Unit = { movieId ->

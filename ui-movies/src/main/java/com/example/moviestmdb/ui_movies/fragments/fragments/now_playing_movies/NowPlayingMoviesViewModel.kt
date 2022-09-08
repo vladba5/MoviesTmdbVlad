@@ -3,7 +3,6 @@ package com.example.moviestmdb.ui_movies.fragments.fragments.now_playing_movies
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
-import com.example.moviestmdb.Movie
 import com.example.moviestmdb.core.util.AppCoroutineDispatchers
 import com.example.moviestmdb.domain.interactors.UpdateGenres
 import com.example.moviestmdb.domain.observers.ObserveGenres
@@ -76,39 +75,12 @@ class NowPlayingMoviesViewModel @Inject constructor(
         }
     }
 
-//    private val uiMessageManager = UiMessageManager()
-//    private val popularLoadingState = ObservableLoadingCounter()
-
-//    val pagedList: Flow<PagingData<Movie>> =
-//        pagingInteractor.flow.cachedIn(viewModelScope)
-
 
     private val PAGING_CONFIG = PagingConfig(
         pageSize = 20,
         initialLoadSize = 40,
         maxSize = 1000
     )
-
-//    val state: StateFlow<NowPlayingViewState> = combine(
-//        pagingInteractor.flow.cachedIn(viewModelScope),
-//        observeGenres.flow,
-//        popularLoadingState.observable,
-//        uiMessageManager.message,
-//    ) { observePagedPopularMovies, genresList, nowPlayingRefreshing, message ->
-//        val data = observePagedPopularMovies.map {
-//            MovieAndGenre(it, genresList)
-//        }
-//        NowPlayingViewState(
-//            nowPlayingPagingData = data,
-//            genreList = genresList,
-//            nowPlayingRefreshing = nowPlayingRefreshing,
-//            message = message
-//        )
-//    }.stateIn(
-//        scope = viewModelScope,
-//        SharingStarted.WhileSubscribed(5000),
-//        NowPlayingViewState.Empty
-//    )
 
     init {
         pagingInteractor(ObservePagedNowPlayingMovies.Params(PAGING_CONFIG))

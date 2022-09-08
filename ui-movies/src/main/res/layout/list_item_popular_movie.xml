@@ -72,6 +72,23 @@
             app:layout_constraintStart_toStartOf="@+id/guideline_start_content"
             app:layout_constraintTop_toBottomOf="@+id/popular_title"
             tools:text="1321 votes • Mar 21, 2022" />
+
+        <HorizontalScrollView
+            android:id="@+id/chip_horizontal_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start_content"
+            app:layout_constraintTop_toBottomOf="@+id/popular_subtitle">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/ThemeOverlay.Tmdb.Chip.Filter" />
+        </HorizontalScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

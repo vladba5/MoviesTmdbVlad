@@ -30,9 +30,8 @@ import kotlinx.coroutines.flow.first
 @AndroidEntryPoint
 class NowPlayingMoviesFragment : Fragment() {
 
-    lateinit var binding: FragmentNowPlayingMoviesBinding
     private val viewModel: NowPlayingMoviesViewModel by viewModels()
-
+    lateinit var binding: FragmentNowPlayingMoviesBinding
     lateinit var pagingAdapter: NowPlayingMoviesAdapter
 
     @Inject
@@ -66,7 +65,6 @@ class NowPlayingMoviesFragment : Fragment() {
             }
         }
 
-
         launchAndRepeatWithViewLifecycle {
             viewModel.filteredChips.collect { chips ->
                 val list = mutableListOf<Chip>()
@@ -86,7 +84,6 @@ class NowPlayingMoviesFragment : Fragment() {
         }
     }
 
-
     private fun createChip(chip: Genre): Chip {
         val chipView = ChipBinding.inflate(LayoutInflater.from(context)).root
         chipView.id = chip.id
@@ -94,19 +91,6 @@ class NowPlayingMoviesFragment : Fragment() {
 
         return chipView
     }
-
-
-//    fun addChips(chipGroup: ChipGroup, chips: List<Genre>) {
-//        chips.forEach { genre ->
-//            val chip = ChipBinding.inflate(LayoutInflater.from(chipGroup.context)).root
-//            chip.id = genre.id
-//            chip.text = genre.name
-//            chip.setOnCheckedChangeListener { compountBtn, ischecked ->
-//
-//            }
-//            chipGroup.addView(chip)
-//        }
-//    }
 
     private val movieClickListener: (Int) -> Unit = { movieId ->
         context?.showToast(movieId.toString())
