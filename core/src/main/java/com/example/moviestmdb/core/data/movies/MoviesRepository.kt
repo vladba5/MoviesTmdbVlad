@@ -19,6 +19,7 @@ class MoviesRepository @Inject constructor(
     fun getFavoriteMovies() =
         fireBaseManager.observeFavoritesMovies()
 
+
     //region popular movies
     suspend fun getPopularMovies(page: Int) =
         flow {
